@@ -1,0 +1,5 @@
+language: swift
+xcode_workspace: Awesome.xcworkspace
+xcode_scheme: AwesomeTests
+podfile: path/to/Podfile
+
