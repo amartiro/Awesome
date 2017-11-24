@@ -1,13 +1,7 @@
 language: swift
-
-brew update
-brew install xctool
-
-before_script: travis/before_script.sh
-script: travis/script.sh
-
 xcode_workspace: Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 podfile: path/to/Podfile
 os: ios
 osx_image: xcode9
+xcode_sdk: iphonesimulator9.3
