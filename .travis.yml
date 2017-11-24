@@ -3,3 +3,4 @@ xcode_workspace: Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 podfile: path/to/Podfile
 os: ios
+osx_image: xcode9
