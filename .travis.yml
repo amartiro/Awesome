@@ -1,6 +1,8 @@
-brew update
-
 language: swift
+
+before_script: travis/before_script.sh
+script: travis/script.sh
+
 xcode_workspace: Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 podfile: path/to/Podfile
