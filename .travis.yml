@@ -1,4 +1,4 @@
-language: swift
+language: objective-c
 xcode_workspace: Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 podfile: path/to/Podfile
