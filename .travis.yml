@@ -1,7 +1,5 @@
 language: swift
 
-set -e
-
 brew update
 brew install xctool
 
