@@ -5,3 +5,6 @@ podfile: path/to/Podfile
 os: ios
 osx_image: xcode9
 xcode_sdk: iphonesimulator9.3
+
+script:
+- xcodebuild clean build test -workspace Awesome.xcworkspace -scheme AwesomeTests
