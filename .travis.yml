@@ -1,5 +1,10 @@
 language: swift
 
+set -e
+
+brew update
+brew install xctool
+
 before_script: travis/before_script.sh
 script: travis/script.sh
 
