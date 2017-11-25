@@ -5,9 +5,9 @@ language: objective-c
 #    - brew install xctool
 
 
-#script: xctool -workspace path/to/Awesome.xcworkspace -scheme AwesomeTest test
+#script: xctool -workspace Awesome.xcworkspace -scheme AwesomeTest test
 
-xcode_workspace: Awesome.xcworkspace
+xcode_workspace: path/to/Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 #podfile: path/to/Podfile
 os: ios
