@@ -1,8 +1,9 @@
 language: objective-c
 
-before_install:
-    - brew update
-    - brew install xctool
+#before_install:
+#    - brew update
+#    - brew install xctool
+
 
 #script: xctool -workspace path/to/Awesome.xcworkspace -scheme AwesomeTest test
 
