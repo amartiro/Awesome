@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7189F593E81BCC54E3B117113BE468A3"
+               BuildableName = "Pods_Awesome.framework"
+               BlueprintName = "Pods-Awesome"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE7F9EB31FC313CC00C7B5B1"
                BuildableName = "Awesome.app"
                BlueprintName = "Awesome"

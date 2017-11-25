@@ -3,8 +3,6 @@ xcode_workspace: Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 podfile: path/to/Podfile
 os: ios
-osx_image: xcode9
+osx_image: xcode9.0
 xcode_sdk: iphonesimulator9.3
 
-script:
-- xcodebuild clean build test -workspace Awesome.xcworkspace -scheme AwesomeTests
