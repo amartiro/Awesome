@@ -16,6 +16,7 @@ enum ItemType {
 
 private enum ItemsVCConstants {
     static let segueToItemDetailVCId = "showItemDetail"
+    static let segueToNewItemVCId = "showNewItem"
 
 }
 
@@ -84,6 +85,9 @@ class ItemsViewController: UIViewController {
     
     }
     
+    @IBAction func PlusButtonAction(_ sender: UIButton) {
+   
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -91,6 +95,11 @@ class ItemsViewController: UIViewController {
         if segue.identifier == ItemsVCConstants.segueToItemDetailVCId,
             let destinationVC = segue.destination as? ItemDetailViewController {
             
+        }
+        
+        
+        if segue.identifier == ItemsVCConstants.segueToNewItemVCId,
+            let destinationVC = segue.destination as? AddNewItemViewController {
             
         }
     }

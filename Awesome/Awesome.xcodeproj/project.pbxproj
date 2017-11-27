@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		11D48AC96E6C23912D5AE6F1 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
+		CE30B2FE1FCC5AC700026EED /* FAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30B2FD1FCC5AC700026EED /* FAButton.swift */; };
+		CE30B3001FCC62C500026EED /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */; };
 		CE7F9EB81FC313CC00C7B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EB71FC313CC00C7B5B1 /* AppDelegate.swift */; };
 		CE7F9EBA1FC313CC00C7B5B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EB91FC313CC00C7B5B1 /* ViewController.swift */; };
 		CE7F9EBD1FC313CC00C7B5B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7F9EBB1FC313CC00C7B5B1 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		9603465E031957406A064860 /* Pods-Awesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome/Pods-Awesome.release.xcconfig"; sourceTree = "<group>"; };
 		9D5F993AD22545014A57A75E /* Pods-Awesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome/Pods-Awesome.debug.xcconfig"; sourceTree = "<group>"; };
 		AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE30B2FD1FCC5AC700026EED /* FAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAButton.swift; sourceTree = "<group>"; };
+		CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		CE7F9EB41FC313CC00C7B5B1 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7F9EB71FC313CC00C7B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7F9EB91FC313CC00C7B5B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */,
 				CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */,
 				CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */,
+				CE30B2FD1FCC5AC700026EED /* FAButton.swift */,
+				CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */,
 			);
 			path = Awesome;
 			sourceTree = "<group>";
@@ -354,8 +360,10 @@
 			files = (
 				CE7F9EC01FC313CC00C7B5B1 /* Awesome.xcdatamodeld in Sources */,
 				CE7F9EE91FC3146E00C7B5B1 /* ItemsViewController.swift in Sources */,
+				CE30B3001FCC62C500026EED /* AddNewItemViewController.swift in Sources */,
 				CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */,
 				CE7F9EBA1FC313CC00C7B5B1 /* ViewController.swift in Sources */,
+				CE30B2FE1FCC5AC700026EED /* FAButton.swift in Sources */,
 				CE7F9EB81FC313CC00C7B5B1 /* AppDelegate.swift in Sources */,
 				CE7F9EEB1FC326E800C7B5B1 /* ItemCell.swift in Sources */,
 			);
