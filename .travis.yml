@@ -8,16 +8,17 @@ install:
    -pod update
 script:
     - open -b com.apple.iphonesimulator
-  - xcodebuild -workspace Awesome.xcworkspace -scheme 'AwesomeTest' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+    - xcodebuild -workspace Awesome.xcworkspace -scheme 'AwesomeTest' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+
 after_failure:
   - tail -n 500 build.log
 
 #script: xctool -workspace Awesome.xcworkspace -scheme AwesomeTest test
 
-#xcode_workspace: Awesome.xcworkspace
-#xcode_scheme: AwesomeTests
+xcode_workspace: Awesome.xcworkspace
+xcode_scheme: AwesomeTests
 #podfile: Podfile
 #os: ios
-#osx_image: xcode9.1
-#xcode_sdk: iphonesimulator11.1
+osx_image: xcode9.1
+xcode_sdk: iphonesimulator11.1
 
