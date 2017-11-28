@@ -16,7 +16,7 @@ after_failure:
 #script: xctool -workspace Awesome.xcworkspace -scheme AwesomeTest test
 
 xcode_workspace: Awesome.xcworkspace
-xcode_scheme: AwesomeTests
+xcode_scheme: Awesome
 #podfile: Podfile
 #os: ios
 osx_image: xcode9.1
