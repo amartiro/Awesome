@@ -1,7 +1,7 @@
 language: objective-c
 
-#before_install:
-#    - brew update
+before_install:
+    - brew update
 #    - brew install xctool
 
 
@@ -11,6 +11,6 @@ xcode_workspace: Awesome.xcworkspace
 xcode_scheme: AwesomeTests
 podfile: Podfile
 os: ios
-osx_image: xcode9.0
-xcode_sdk: iphonesimulator9.3
+osx_image: xcode9.1
+xcode_sdk: iphonesimulator9.0
 
