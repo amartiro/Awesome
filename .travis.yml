@@ -4,7 +4,7 @@ before_install:
     - brew update
     - brew install xctool
     - sudo gem install xcpretty
-#install: 
+install: 
    - pod update
 script:
     - open -b com.apple.iphonesimulator
