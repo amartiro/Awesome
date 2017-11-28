@@ -5,7 +5,7 @@ before_install:
     - brew install xctool
     - sudo gem install xcpretty
 install: 
-   -pod update
+   - pod update
 script:
     - open -b com.apple.iphonesimulator
     - xcodebuild -workspace Awesome.xcworkspace -scheme 'AwesomeTest' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
