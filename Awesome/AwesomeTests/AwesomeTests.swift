@@ -24,8 +24,8 @@ class AwesomeTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssertNotNil(nil, "Cannot nil instance");
-     //   XCTAssertNotNil("Gevor", "Cannot nil instance");
+       // XCTAssertNotNil(nil, "Cannot nil instance");
+        XCTAssertNotNil("Gevor", "Cannot nil instance");
     }
     
     func testPerformanceExample() {
