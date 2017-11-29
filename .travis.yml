@@ -1,4 +1,9 @@
 language: objective-c
+xcode_workspace: Awesome.xcworkspace
+xcode_scheme: Awesome
+#podfile: Podfile
+osx_image: xcode9.1
+xcode_sdk: iphonesimulator9.3
 
 before_install:
     - brew update
@@ -6,17 +11,22 @@ before_install:
     - sudo gem install xcpretty
 #install: 
 #   - pod update
-script:
+
+before_script:
     - open -b com.apple.iphonesimulator
+
+script:
     - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.1' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+
+after_success:
 
 #after_failure:
 #  - tail -n 500 build.log
 
-xcode_workspace: Awesome.xcworkspace
-xcode_scheme: Awesome
-#podfile: Podfile
-#os: ios
-osx_image: xcode9.1
-xcode_sdk: iphonesimulator9.3
+before_deploy:
+
+deploy:
+
+after_deploy:
+
 

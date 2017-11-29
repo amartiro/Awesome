@@ -193,20 +193,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fr-A1-7oM" customClass="FAButton" customModule="Awesome" customModuleProvider="target">
+                                <rect key="frame" x="295" y="543" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3Fr-A1-7oM" secondAttribute="height" multiplier="1:1" id="0BG-GU-ktV"/>
+                                    <constraint firstAttribute="height" constant="60" id="TkW-SB-3wI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="✎">
+                                    <color key="titleColor" red="0.99990516900000004" green="1" blue="0.99987047910000004" alpha="0.89412992290000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cYR-V7-XaB" kind="show" id="aNR-c4-T8v"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yM6-de-XNm" firstAttribute="leading" secondItem="4tN-vQ-hrC" secondAttribute="leading" constant="8" id="0kn-CC-Ua0"/>
                             <constraint firstItem="yM6-de-XNm" firstAttribute="top" secondItem="1Vq-P0-AP3" secondAttribute="bottom" constant="8" symbolic="YES" id="3i9-IY-5bZ"/>
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="leading" secondItem="6rL-o6-pop" secondAttribute="leading" constant="8" id="7qv-I8-qHm"/>
+                            <constraint firstItem="3Fr-A1-7oM" firstAttribute="bottom" secondItem="6rL-o6-pop" secondAttribute="bottom" constant="-20" id="7zw-Ha-FF7"/>
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="top" secondItem="PW2-Hi-Tn7" secondAttribute="bottom" constant="8" symbolic="YES" id="8m0-qX-x65"/>
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="centerX" secondItem="6rL-o6-pop" secondAttribute="centerX" constant="8" id="GxY-1v-UeI"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yM6-de-XNm" secondAttribute="trailing" constant="20" symbolic="YES" id="Jvu-wx-B82"/>
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="top" secondItem="PW2-Hi-Tn7" secondAttribute="bottom" constant="8" symbolic="YES" id="MBr-lQ-IjI"/>
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="top" secondItem="PW2-Hi-Tn7" secondAttribute="bottom" constant="8" symbolic="YES" id="NMX-BY-s7u"/>
+                            <constraint firstItem="3Fr-A1-7oM" firstAttribute="trailing" secondItem="6rL-o6-pop" secondAttribute="trailing" constant="-20" id="O5h-pu-5FW"/>
                             <constraint firstItem="PW2-Hi-Tn7" firstAttribute="centerX" secondItem="6rL-o6-pop" secondAttribute="centerX" id="QC2-KL-Lmo"/>
                             <constraint firstItem="PW2-Hi-Tn7" firstAttribute="top" secondItem="6rL-o6-pop" secondAttribute="top" id="eFZ-TV-xVl"/>
+                            <constraint firstItem="3Fr-A1-7oM" firstAttribute="width" secondItem="3Fr-A1-7oM" secondAttribute="height" multiplier="1:1" id="ebs-Ij-TMq"/>
                             <constraint firstItem="6rL-o6-pop" firstAttribute="trailing" secondItem="PW2-Hi-Tn7" secondAttribute="trailing" id="jdq-do-PVw"/>
+                            <constraint firstItem="3Fr-A1-7oM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4tN-vQ-hrC" secondAttribute="leading" constant="20" symbolic="YES" id="ora-GX-pKU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6rL-o6-pop"/>
                     </view>
@@ -379,4 +397,7 @@
             <point key="canvasLocation" x="61.600000000000001" y="825.33733133433293"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="aNR-c4-T8v"/>
+    </inferredMetricsTieBreakers>
 </document>
