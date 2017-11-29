@@ -16,8 +16,17 @@ before_script:
     - open -b com.apple.iphonesimulator
 
 script:
-    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.1' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
 
+  - >
+    curl
+    -F "status=2"
+    -F "notify=1"
+    -F "notes=Some new  features and fixed bugs."
+    -F "notes_type=0"
+   # -F "ipa=@app/build/outputs/apk/YOUR_SIGNED_BUILD.apk"
+    -H "X-HockeyAppToken: $HOCKEYAPP_TOKEN"
+    https://rink.hockeyapp.net/api/2/apps/upload
 after_success:
 
 #after_failure:
