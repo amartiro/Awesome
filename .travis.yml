@@ -6,8 +6,8 @@ xcode_scheme: Awesome
 #xcode_sdk: iphonesimulator9.3
 
 before_install:
-    - brew update
-    - brew install xctool
+#    - brew update
+#    - brew install xctool
     - sudo gem install xcpretty
 #install: 
 #   - pod update
