@@ -8,7 +8,7 @@ before_install:
 #   - pod update
 script:
     - open -b com.apple.iphonesimulator
-#    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.1' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
 
 #after_failure:
 #  - tail -n 500 build.log
