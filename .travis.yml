@@ -16,7 +16,7 @@ before_script:
     - open -b com.apple.iphonesimulator
 
 script:
-    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
 
 #  - >
  #   curl
