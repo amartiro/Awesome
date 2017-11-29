@@ -21,6 +21,8 @@
 		CE7F9EE91FC3146E00C7B5B1 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */; };
 		CE7F9EEB1FC326E800C7B5B1 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */; };
 		CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */; };
+		CEAF25471FCE93D300174282 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
+		CEAF25481FCE93D300174282 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEAF25471FCE93D300174282 /* Pods_Awesome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEAF25481FCE93D300174282 /* Pods_Awesome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
