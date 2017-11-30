@@ -66,7 +66,7 @@ class ItemsViewController: UIViewController {
             self.itemType = .snakes
         }
         actionSheetController.addAction(snakeActionButton)
-        
+
         let cardActionButton = UIAlertAction(title: "Card Games", style: .default) { action -> Void in
              self.itemType = .cardGames
         }
