@@ -2,7 +2,7 @@ notifications:
   email:
     recipients:
       - artak1984@gmail.com
-      - artakmartirosyan@mail.ru
+#      - artakmartirosyan@mail.ru
 
     # change is when the repo status goes from pass to fail or vice versa
     on_success: change
@@ -16,12 +16,12 @@ cache:
 xcode_workspace: Awesome.xcworkspace
 xcode_scheme: Awesome
 #podfile: Podfile
-#osx_image: xcode9.1
-#xcode_sdk: iphonesimulator9.3
+osx_image: xcode9.1
+xcode_sdk: iphonesimulator9.3
 
 before_install:
-#    - brew update
-#    - brew install xctool
+    - brew update
+    - brew install xctool
     - sudo gem install xcpretty
 #install: 
 #   - pod update
@@ -30,7 +30,7 @@ before_script:
     - open -b com.apple.iphonesimulator
 
 script:
-    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
+#    - xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme 'Awesome' -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0' -sdk iphonesimulator build test > build.log && exit ${PIPESTATUS[0]}
 
 #  - >
  #   curl
@@ -43,8 +43,8 @@ script:
  #   https://rink.hockeyapp.net/api/2/apps/upload
 after_success:
 
-after_failure:
-  - tail -n 500 build.log
+#after_failure:
+#  - tail -n 500 build.log
 
 before_deploy:
 
