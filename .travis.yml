@@ -43,8 +43,8 @@ script:
  #   https://rink.hockeyapp.net/api/2/apps/upload
 after_success:
 
-#after_failure:
-#  - tail -n 500 build.log
+after_failure:
+  - tail -n 500 build.log
 
 before_deploy:
 
