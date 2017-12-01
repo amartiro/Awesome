@@ -17,12 +17,13 @@ enum ItemType {
 private enum ItemsVCConstants {
     static let segueToItemDetailVCId = "showItemDetail"
     static let segueToNewItemVCId = "showNewItem"
-
 }
 
 
 class ItemsViewController: UIViewController {
     @IBOutlet weak var itemsTableView: UITableView!
+    
+    var level = 5
     
     var itemType : ItemType! {
         didSet {
@@ -94,13 +95,13 @@ class ItemsViewController: UIViewController {
 
         if segue.identifier == ItemsVCConstants.segueToItemDetailVCId,
             let destinationVC = segue.destination as? ItemDetailViewController {
-            
+            destinationVC.level = 5
         }
         
         
         if segue.identifier == ItemsVCConstants.segueToNewItemVCId,
             let destinationVC = segue.destination as? AddNewItemViewController {
-            
+            destinationVC.level = 10
         }
     }
         

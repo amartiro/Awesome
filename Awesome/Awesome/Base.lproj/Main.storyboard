@@ -373,10 +373,11 @@
                             <constraint firstItem="EGr-S8-EW8" firstAttribute="height" secondItem="ArK-do-RPb" secondAttribute="height" id="dSV-s6-THk"/>
                             <constraint firstItem="8f0-oE-aoN" firstAttribute="centerX" secondItem="kC3-ad-pQh" secondAttribute="centerX" id="gdp-Nx-hWv"/>
                             <constraint firstItem="8f0-oE-aoN" firstAttribute="height" secondItem="kC3-ad-pQh" secondAttribute="height" id="ge3-tk-GGY"/>
+                            <constraint firstAttribute="trailing" secondItem="s0q-NQ-wPX" secondAttribute="trailing" constant="303" id="git-iL-TNs"/>
                             <constraint firstItem="Ugf-C5-t5W" firstAttribute="centerX" secondItem="EGr-S8-EW8" secondAttribute="centerX" id="lzY-Vr-JtF"/>
                             <constraint firstItem="VsQ-Pw-Mke" firstAttribute="leading" secondItem="Y8n-Ci-kQ6" secondAttribute="trailing" constant="34" id="r2w-XR-KsO"/>
                             <constraint firstItem="kC3-ad-pQh" firstAttribute="top" secondItem="95N-Lf-gxM" secondAttribute="bottom" constant="8" symbolic="YES" id="vY4-dP-GZ5"/>
-                            <constraint firstItem="s0q-NQ-wPX" firstAttribute="leading" secondItem="Y8n-Ci-kQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="vlc-TI-tgD"/>
+                            <constraint firstItem="s0q-NQ-wPX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y8n-Ci-kQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="vlc-TI-tgD"/>
                             <constraint firstItem="i6t-c7-wKU" firstAttribute="trailing" secondItem="ArK-do-RPb" secondAttribute="trailing" constant="16" id="wp2-ei-wfG"/>
                             <constraint firstItem="Ugf-C5-t5W" firstAttribute="width" secondItem="EGr-S8-EW8" secondAttribute="width" id="xdO-6n-CVR"/>
                             <constraint firstItem="ArK-do-RPb" firstAttribute="top" secondItem="i6t-c7-wKU" secondAttribute="top" constant="16" id="zEX-YZ-n0n"/>
