@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 
 class ItemDetailViewController: UIViewController {
+    var level = 5
 
     override func viewDidLoad() {
         super.viewDidLoad()
