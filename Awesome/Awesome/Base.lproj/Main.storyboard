@@ -129,7 +129,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="smO-qU-wLw">
                         <rightBarButtonItems>
-                            <barButtonItem title="RESET" style="plain" id="XdT-9f-iLR">
+                            <barButtonItem title="RESET" id="XdT-9f-iLR">
                                 <connections>
                                     <action selector="resetItemsAction:" destination="BYZ-38-t0r" id="2yR-ao-54N"/>
                                 </connections>
@@ -399,6 +399,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aNR-c4-T8v"/>
+        <segue reference="jKM-6T-kGg"/>
     </inferredMetricsTieBreakers>
 </document>
