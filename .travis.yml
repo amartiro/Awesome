@@ -9,7 +9,7 @@ script:
 
  # - xcodebuild clean test -workspace Awesome/Awesome.xcworkspace -scheme Awesome -destination "platform=iOS Simulator,name=iPhone 7,OS=10.0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
   
-- xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme Awesome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+#- xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme Awesome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
 
 - xcodebuild clean test -workspace Awesome/Awesome.xcworkspace -scheme Awesome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
 
