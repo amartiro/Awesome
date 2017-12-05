@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		11D48AC96E6C23912D5AE6F1 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
+		CE0748341FD58B2C002C8F63 /* LevelMeter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0748331FD58B2C002C8F63 /* LevelMeter.xib */; };
+		CE0748361FD58B43002C8F63 /* LevelMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0748351FD58B43002C8F63 /* LevelMeter.swift */; };
+		CE0748381FD58C3C002C8F63 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0748371FD58C3C002C8F63 /* CounterView.swift */; };
+		CE07483A1FD58D50002C8F63 /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0748391FD58D50002C8F63 /* ArrowView.swift */; };
+		CE07483C1FD67C1D002C8F63 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07483B1FD67C1D002C8F63 /* LevelView.swift */; };
 		CE30B2FE1FCC5AC700026EED /* FAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30B2FD1FCC5AC700026EED /* FAButton.swift */; };
 		CE30B3001FCC62C500026EED /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */; };
 		CE7F9EB81FC313CC00C7B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EB71FC313CC00C7B5B1 /* AppDelegate.swift */; };
@@ -46,6 +51,11 @@
 		9603465E031957406A064860 /* Pods-Awesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome/Pods-Awesome.release.xcconfig"; sourceTree = "<group>"; };
 		9D5F993AD22545014A57A75E /* Pods-Awesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome/Pods-Awesome.debug.xcconfig"; sourceTree = "<group>"; };
 		AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0748331FD58B2C002C8F63 /* LevelMeter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelMeter.xib; sourceTree = "<group>"; };
+		CE0748351FD58B43002C8F63 /* LevelMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMeter.swift; sourceTree = "<group>"; };
+		CE0748371FD58C3C002C8F63 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		CE0748391FD58D50002C8F63 /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
+		CE07483B1FD67C1D002C8F63 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		CE30B2FD1FCC5AC700026EED /* FAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAButton.swift; sourceTree = "<group>"; };
 		CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		CE7F9EB41FC313CC00C7B5B1 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +122,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CE0748321FD58AE8002C8F63 /* LevelMeter */ = {
+			isa = PBXGroup;
+			children = (
+				CE0748331FD58B2C002C8F63 /* LevelMeter.xib */,
+				CE0748351FD58B43002C8F63 /* LevelMeter.swift */,
+				CE0748371FD58C3C002C8F63 /* CounterView.swift */,
+				CE0748391FD58D50002C8F63 /* ArrowView.swift */,
+				CE07483B1FD67C1D002C8F63 /* LevelView.swift */,
+			);
+			path = LevelMeter;
+			sourceTree = "<group>";
+		};
 		CE7F9EAB1FC313CC00C7B5B1 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +159,7 @@
 		CE7F9EB61FC313CC00C7B5B1 /* Awesome */ = {
 			isa = PBXGroup;
 			children = (
+				CE0748321FD58AE8002C8F63 /* LevelMeter */,
 				CE7F9EB71FC313CC00C7B5B1 /* AppDelegate.swift */,
 				CE7F9EB91FC313CC00C7B5B1 /* ViewController.swift */,
 				CE7F9EBB1FC313CC00C7B5B1 /* Main.storyboard */,
@@ -281,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0748341FD58B2C002C8F63 /* LevelMeter.xib in Resources */,
 				CE7F9EC51FC313CC00C7B5B1 /* LaunchScreen.storyboard in Resources */,
 				CE7F9EC21FC313CC00C7B5B1 /* Assets.xcassets in Resources */,
 				CE7F9EBD1FC313CC00C7B5B1 /* Main.storyboard in Resources */,
@@ -365,13 +389,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7F9EC01FC313CC00C7B5B1 /* Awesome.xcdatamodeld in Sources */,
+				CE07483C1FD67C1D002C8F63 /* LevelView.swift in Sources */,
 				CE7F9EE91FC3146E00C7B5B1 /* ItemsViewController.swift in Sources */,
 				CE30B3001FCC62C500026EED /* AddNewItemViewController.swift in Sources */,
 				CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */,
 				CE7F9EBA1FC313CC00C7B5B1 /* ViewController.swift in Sources */,
 				CE30B2FE1FCC5AC700026EED /* FAButton.swift in Sources */,
+				CE07483A1FD58D50002C8F63 /* ArrowView.swift in Sources */,
+				CE0748361FD58B43002C8F63 /* LevelMeter.swift in Sources */,
 				CE7F9EB81FC313CC00C7B5B1 /* AppDelegate.swift in Sources */,
 				CE7F9EEB1FC326E800C7B5B1 /* ItemCell.swift in Sources */,
+				CE0748381FD58C3C002C8F63 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

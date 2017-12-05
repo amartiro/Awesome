@@ -182,13 +182,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yM6-de-XNm">
-                                <rect key="frame" x="8" y="260" width="40" height="21"/>
+                                <rect key="frame" x="8" y="261" width="40" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vq-P0-AP3">
-                                <rect key="frame" x="8" y="232" width="375" height="20.5"/>
+                                <rect key="frame" x="8" y="232" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -207,6 +207,13 @@
                                     <segue destination="cYR-V7-XaB" kind="show" id="aNR-c4-T8v"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4k-Vm-jhw" customClass="LevelMeter" customModule="Awesome" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="314" width="240" height="240"/>
+                                <color key="backgroundColor" red="1" green="0.38696749819999998" blue="0.6742379355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="a4k-Vm-jhw" secondAttribute="height" multiplier="1:1" id="YZA-5R-NAs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -220,11 +227,14 @@
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="top" secondItem="PW2-Hi-Tn7" secondAttribute="bottom" constant="8" symbolic="YES" id="MBr-lQ-IjI"/>
                             <constraint firstItem="1Vq-P0-AP3" firstAttribute="top" secondItem="PW2-Hi-Tn7" secondAttribute="bottom" constant="8" symbolic="YES" id="NMX-BY-s7u"/>
                             <constraint firstItem="3Fr-A1-7oM" firstAttribute="trailing" secondItem="6rL-o6-pop" secondAttribute="trailing" constant="-20" id="O5h-pu-5FW"/>
+                            <constraint firstItem="a4k-Vm-jhw" firstAttribute="width" secondItem="4tN-vQ-hrC" secondAttribute="height" multiplier="240:667" id="OZH-Tp-Ny6"/>
                             <constraint firstItem="PW2-Hi-Tn7" firstAttribute="centerX" secondItem="6rL-o6-pop" secondAttribute="centerX" id="QC2-KL-Lmo"/>
+                            <constraint firstItem="a4k-Vm-jhw" firstAttribute="centerX" secondItem="6rL-o6-pop" secondAttribute="centerX" id="YNp-s4-NTC"/>
                             <constraint firstItem="PW2-Hi-Tn7" firstAttribute="top" secondItem="6rL-o6-pop" secondAttribute="top" id="eFZ-TV-xVl"/>
                             <constraint firstItem="3Fr-A1-7oM" firstAttribute="width" secondItem="3Fr-A1-7oM" secondAttribute="height" multiplier="1:1" id="ebs-Ij-TMq"/>
                             <constraint firstItem="6rL-o6-pop" firstAttribute="trailing" secondItem="PW2-Hi-Tn7" secondAttribute="trailing" id="jdq-do-PVw"/>
                             <constraint firstItem="3Fr-A1-7oM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4tN-vQ-hrC" secondAttribute="leading" constant="20" symbolic="YES" id="ora-GX-pKU"/>
+                            <constraint firstItem="a4k-Vm-jhw" firstAttribute="top" secondItem="yM6-de-XNm" secondAttribute="bottom" constant="32" id="zPk-oa-MkQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6rL-o6-pop"/>
                     </view>
@@ -336,6 +346,14 @@
                                 <rect key="frame" x="16" y="452.5" width="343" height="82.5"/>
                                 <color key="backgroundColor" red="1" green="0.38696749819999998" blue="0.6742379355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgg-mC-vam" customClass="LevelMeter" customModule="Awesome" customModuleProvider="target">
+                                <rect key="frame" x="160" y="363" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jgg-mC-vam" secondAttribute="height" multiplier="1:1" id="dyQ-PL-OIX"/>
+                                    <constraint firstAttribute="width" constant="80" id="kBO-tc-AMn"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -354,9 +372,11 @@
                             <constraint firstItem="s0q-NQ-wPX" firstAttribute="centerY" secondItem="Y8n-Ci-kQ6" secondAttribute="centerY" id="F0b-PL-Gus"/>
                             <constraint firstItem="QCz-nf-L7z" firstAttribute="leading" secondItem="i6t-c7-wKU" secondAttribute="leading" constant="30" id="FNh-2p-ory"/>
                             <constraint firstItem="kC3-ad-pQh" firstAttribute="width" secondItem="Ugf-C5-t5W" secondAttribute="width" id="K3Z-ir-CHl"/>
+                            <constraint firstItem="jgg-mC-vam" firstAttribute="leading" secondItem="VsQ-Pw-Mke" secondAttribute="trailing" constant="50" id="KYP-fC-h0N"/>
                             <constraint firstItem="95N-Lf-gxM" firstAttribute="centerX" secondItem="Ugf-C5-t5W" secondAttribute="centerX" id="Kem-jP-cSO"/>
                             <constraint firstItem="95N-Lf-gxM" firstAttribute="width" secondItem="Ugf-C5-t5W" secondAttribute="width" id="Ktf-va-fpa"/>
                             <constraint firstItem="Y8n-Ci-kQ6" firstAttribute="leading" secondItem="kC3-ad-pQh" secondAttribute="leading" id="MCn-iP-5W3"/>
+                            <constraint firstItem="jgg-mC-vam" firstAttribute="top" secondItem="95N-Lf-gxM" secondAttribute="bottom" constant="15" id="Mvg-mc-HfT"/>
                             <constraint firstItem="Kt0-jJ-X0a" firstAttribute="centerX" secondItem="EGr-S8-EW8" secondAttribute="centerX" id="P34-xH-Tfa"/>
                             <constraint firstItem="ArK-do-RPb" firstAttribute="centerX" secondItem="dzr-Pf-3AL" secondAttribute="centerX" id="P3F-cN-L6H"/>
                             <constraint firstItem="lLn-Tt-MEz" firstAttribute="top" secondItem="8f0-oE-aoN" secondAttribute="bottom" constant="8" symbolic="YES" id="Phz-od-0sw"/>
@@ -386,6 +406,7 @@
                     </view>
                     <connections>
                         <outlet property="levelLabel" destination="s0q-NQ-wPX" id="NMz-mq-BEJ"/>
+                        <outlet property="levelMeter" destination="jgg-mC-vam" id="zEr-ua-Ei7"/>
                         <outlet property="longDescTextView" destination="95N-Lf-gxM" id="7m6-yp-6Ax"/>
                         <outlet property="minusLevelButton" destination="Y8n-Ci-kQ6" id="iTV-up-iza"/>
                         <outlet property="plusLevelButton" destination="VsQ-Pw-Mke" id="SnT-lR-jpe"/>
@@ -399,6 +420,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jKM-6T-kGg"/>
+        <segue reference="aNR-c4-T8v"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,11 +16,13 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var minusLevelButton: UIButton!
     @IBOutlet weak var plusLevelButton: UIButton!
+    @IBOutlet weak var levelMeter: LevelMeter!
     
-    var level = 5 {
+    var level : Int = 10 {
         
         didSet {
-            levelLabel.text = "\(level)"
+            levelLabel?.text = "\(level)"
+            levelMeter?.level = level
         }
     }
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ class AddNewItemViewController: UIViewController {
     }
     
     @IBAction func minusLevelAction(_ sender: UIButton) {
-        if level > 0 {
+        if level > 1 {
             level = level - 1
         }
     }
