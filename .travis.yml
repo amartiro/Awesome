@@ -4,15 +4,14 @@ osx_image:  xcode9.1 #2
 #xcode_scheme: Awesome #4
 #xcode_sdk: iphonesimulator9.3 #5
 
-script:
-#    - xcodebuild clean test -workspace Awesome/Awesome.xcworkspace -scheme Awesome -destination "platform=iOS Simulator,name=iPhone 7,OS=10.0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
+before_install:
+  - sudo gem install cocoapods
+  - brew update
+  - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
 
+script:
  - xcodebuild clean test -workspace Awesome/Awesome.xcworkspace -scheme Awesome -destination "platform=iOS Simulator,name=iPhone 7,OS=10.0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
   
-#- xcodebuild -workspace Awesome/Awesome.xcworkspace -scheme Awesome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
-
-# - xcodebuild clean test -workspace Awesome/Awesome.xcworkspace -scheme Awesome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
-
 notifications: 
   email:
     recipients:
