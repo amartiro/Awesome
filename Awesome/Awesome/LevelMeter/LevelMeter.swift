@@ -10,11 +10,10 @@ import UIKit
 
 class LevelMeter: UIView {
 
-    @IBOutlet var levelView: LevelView!
+    @IBOutlet weak var counterView: CounterView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,18 +27,17 @@ class LevelMeter: UIView {
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(xibView)
-        
     }
     
     var counter: Int = 1{
         didSet {
-            self.levelView.counter = counter
+            counterView.counter = counter
         }
     }
     
     var level: Int = 1{
         didSet {
-            self.levelView.level = level
+            counterView.level = level
         }
     }
     

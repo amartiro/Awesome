@@ -238,6 +238,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6rL-o6-pop"/>
                     </view>
+                    <connections>
+                        <outlet property="levelMeter" destination="a4k-Vm-jhw" id="WW8-Kb-1ee"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEn-mE-kLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,11 +13,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LevelMeter" customModule="Awesome" customModuleProvider="target">
             <connections>
-                <outlet property="levelView" destination="iN0-l3-epB" id="FLy-kl-cuh"/>
+                <outlet property="counterView" destination="RTC-Lx-WAC" id="iBe-0f-ys0"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LevelView" customModule="Awesome" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -29,19 +29,10 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="counter">
-                            <integer key="value" value="3"/>
+                            <integer key="value" value="13"/>
                         </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdc-rY-W4O" customClass="ArrowView" customModule="Awesome" customModuleProvider="target">
-                    <rect key="frame" x="-0.5" y="0.0" width="375" height="375"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="level">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="counter">
-                            <integer key="value" value="10"/>
+                            <integer key="value" value="7"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
@@ -49,10 +40,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <accessibility key="accessibilityConfiguration" identifier="LevelMeter"/>
             <constraints>
-                <constraint firstItem="qdc-rY-W4O" firstAttribute="centerY" secondItem="RTC-Lx-WAC" secondAttribute="centerY" id="43M-ar-dSm"/>
-                <constraint firstItem="qdc-rY-W4O" firstAttribute="centerX" secondItem="RTC-Lx-WAC" secondAttribute="centerX" id="4eZ-8H-dmp"/>
-                <constraint firstItem="qdc-rY-W4O" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" id="CzA-8w-XcI"/>
-                <constraint firstItem="qdc-rY-W4O" firstAttribute="height" secondItem="vUN-kp-3ea" secondAttribute="height" id="PZQ-W3-EJg"/>
                 <constraint firstItem="RTC-Lx-WAC" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" id="RjY-W3-KpU"/>
                 <constraint firstItem="RTC-Lx-WAC" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="YUX-kw-LdS"/>
                 <constraint firstItem="RTC-Lx-WAC" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="aKq-6w-cfE"/>
@@ -64,13 +51,9 @@
                     <integer key="value" value="4"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="number" keyPath="level">
-                    <integer key="value" value="2"/>
+                    <integer key="value" value="4"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <connections>
-                <outlet property="arrowView" destination="qdc-rY-W4O" id="zo1-n0-w1f"/>
-                <outlet property="counterView" destination="RTC-Lx-WAC" id="cyl-Of-bsi"/>
-            </connections>
             <point key="canvasLocation" x="-142" y="29"/>
         </view>
     </objects>

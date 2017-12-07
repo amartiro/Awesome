@@ -11,10 +11,10 @@ import UIKit
 class AngleCalculator{
     
     static func getRangeOf(segment: Int, ofTotal total: Int) -> (CGFloat, CGFloat){
-        let delta : CGFloat = 0.02
         
         let startAngle: CGFloat = 3 * .pi / 4
         let angleShift = 3 * .pi / (2 * CGFloat(total))
+        let delta : CGFloat = 0.02 * angleShift
         
         let beginAngle = startAngle + CGFloat(segment) * angleShift + delta
         let endAngle = beginAngle + angleShift - 2 * delta
@@ -38,9 +38,48 @@ class AngleCalculator{
     
 }
 
-class CounterView: UIView {
+@IBDesignable  class CounterView: UIView {
     
-    var counter: Int = 10
+    var arrowView = ArrowView()
+    
+    @IBInspectable var counter: Int = 10 {
+        didSet {
+            if counter < level {
+                level = counter
+            }
+        }
+    }
+    
+    @IBInspectable var level: Int = 10 {
+        didSet {
+            if level < 1 {
+                level = 1
+            }
+            if level > counter {
+                level = counter
+            }
+            
+            self.arrowView.transform = CGAffineTransform(rotationAngle:AngleCalculator.getArrowAngleOf(segment: level - 1, ofTotal: counter))
+        }
+        
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit(){
+        arrowView.frame =  self.bounds
+        arrowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(arrowView)
+    }
     
     override func draw(_ rect: CGRect) {
         // 1

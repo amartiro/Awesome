@@ -23,6 +23,7 @@ class AddNewItemViewController: UIViewController {
         didSet {
             levelLabel?.text = "\(level)"
             levelMeter?.level = level
+            levelMeter?.counter = 10
         }
     }
     override func viewDidLoad() {
@@ -35,7 +36,6 @@ class AddNewItemViewController: UIViewController {
         minusLevelButton.layer.cornerRadius = 5
         plusLevelButton.layer.cornerRadius = 5
         
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func minusLevelAction(_ sender: UIButton) {
@@ -53,7 +53,5 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var minusLevelAction: UIButton!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 }

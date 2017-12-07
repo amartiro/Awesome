@@ -32,6 +32,33 @@ class AwesomeTests: XCTestCase {
      //   XCTAssertNotNil(nil, "Cannot nil instance");
     }
     
+    func testAngleCalculatorArrowAngle() {
+       XCTAssertEqual(AngleCalculator.getArrowAngleOf(segment: 5, ofTotal: 11) , 0)
+    }
+    
+    func testAngleCalculatorSegmentRange() {
+        let range = AngleCalculator.getRangeOf(segment: 7, ofTotal: 15)
+
+        
+        XCTAssert(range.1 - range.0 <= .pi / 10, "\(range)")
+
+    }
+    
+    func testAngleCalculatorSegmentRangeEquality() {
+        let range1 = AngleCalculator.getRangeOf(segment: 7, ofTotal: 15)
+        let range2 = AngleCalculator.getRangeOf(segment: 9, ofTotal: 15)
+        
+        XCTAssertEqual(range1.1 - range1.0, range2.1 - range2.0)
+    }
+    
+    func testAngleCalculatorSegmentRangeComparation() {
+        let range1 = AngleCalculator.getRangeOf(segment: 7, ofTotal: 15)
+        let range2 = AngleCalculator.getRangeOf(segment: 7, ofTotal: 16)
+        
+        XCTAssert(range1.1 - range1.0 > range2.1 - range2.0, "More segments small angle")
+    }
+        
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
