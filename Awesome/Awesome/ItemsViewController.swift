@@ -11,7 +11,7 @@ import UIKit
 enum ItemType {
     case snakes
     case cardGames
-    case tasks
+    case todos
 }
 
 private enum ItemsVCConstants {
@@ -22,13 +22,21 @@ private enum ItemsVCConstants {
 
 class ItemsViewController: UIViewController {
     @IBOutlet weak var itemsTableView: UITableView!
+    @IBOutlet weak var itemsCollectionView: UICollectionView!
     
-    var level = 5
+    fileprivate let itemsPerRow: CGFloat = 2
+    fileprivate let sectionHorizontalInset: CGFloat =  5.0
+
+    fileprivate var isGrid: Bool = true
     
-    var itemType : ItemType! {
+    var itemType : ItemType = .snakes{
         didSet {
-            self.title = "\(itemType!)"
-            
+            if oldValue != itemType {
+                self.title = Helper.sharedInstance.getItemDisplayName(itemType: itemType)
+//                NetworkManager.sharedInstance.getItems(itemType: Helper.sharedInstance.getItemName(itemType: itemType)) { (response, error) in
+//              
+//                }
+            }
         }
     }
     
@@ -36,8 +44,9 @@ class ItemsViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .yellow;
-      
-        //itemsTableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+//        NetworkManager.sharedInstance.getItems(itemType: "SNAKE") { (response, error) in
+//
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,18 +72,18 @@ class ItemsViewController: UIViewController {
         }
         actionSheetController.addAction(cancelActionButton)
         
-        let snakeActionButton = UIAlertAction(title: "Snakes", style: .default) { action -> Void in
+        let snakeActionButton = UIAlertAction(title: Helper.sharedInstance.getItemDisplayName(itemType: .snakes), style: .default) { action -> Void in
             self.itemType = .snakes
         }
         actionSheetController.addAction(snakeActionButton)
 
-        let cardActionButton = UIAlertAction(title: "Card Games", style: .default) { action -> Void in
+        let cardActionButton = UIAlertAction(title: Helper.sharedInstance.getItemDisplayName(itemType: .cardGames), style: .default) { action -> Void in
              self.itemType = .cardGames
         }
         actionSheetController.addAction(cardActionButton)
         
-        let tasksActionButton = UIAlertAction(title: "Tasks/To Do", style: .default) { action -> Void in
-            self.itemType = .tasks
+        let tasksActionButton = UIAlertAction(title: Helper.sharedInstance.getItemDisplayName(itemType: .todos), style: .default) { action -> Void in
+            self.itemType = .todos
 
         }
         actionSheetController.addAction(tasksActionButton)
@@ -101,10 +110,28 @@ class ItemsViewController: UIViewController {
         
         if segue.identifier == ItemsVCConstants.segueToNewItemVCId,
             let destinationVC = segue.destination as? AddNewItemViewController {
-            destinationVC.level = 10
+            destinationVC.level = 5
         }
     }
-        
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            isGrid = true
+            itemsTableView.isHidden = true
+            itemsCollectionView.isHidden = false
+            
+        //    imageView.image = UIImage(named: const2)
+        } else {
+            print("Portrait")
+            isGrid = false
+            itemsTableView.isHidden = false
+            itemsCollectionView.isHidden = true
+            
+    //        imageView.image = UIImage(named: const)
+        }
+    }
 }
 
 extension ItemsViewController : UITableViewDataSource {
@@ -113,7 +140,12 @@ extension ItemsViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+       
+//        if isGrid {
+//            let cell: GridCell = tableView.dequeueReusableCell(withIdentifier: "GridCell") as! GridCell
+//
+//            return cell
+//        }
         let cell: ItemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
         
         cell.titleLabel.text = "Samo"
@@ -128,11 +160,61 @@ extension ItemsViewController : UITableViewDataSource {
 extension ItemsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+//       if isGrid {
+//        return 93
+//        }
         return 60;
     }
     
 }
+
+extension ItemsViewController : UICollectionViewDelegate{
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        
+        
+    }
+    
+}
+
+extension ItemsViewController : UICollectionViewDataSource{
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 17
+    }
+    
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        // Configure the cell
+        
+        cell.backgroundColor = .red
+        
+        return cell
+
+        
+    }
+    
+    
+    
+    
+}
+
+extension ItemsViewController : UICollectionViewDelegateFlowLayout{
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        let paddingSpace = sectionHorizontalInset * (itemsPerRow + 1)
+        let availableWidth = view.frame.height - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem / 3.0)
+    }
+}
+    
 
 extension ItemsViewController : UIActionSheetDelegate {
     

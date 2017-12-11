@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="arr-h7-jGN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="arr-h7-jGN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -94,12 +94,68 @@
                                             <segue destination="PEo-vb-YwW" kind="show" identifier="showItemDetail" id="q6I-66-VqO"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GridCell" rowHeight="90" id="iWt-tI-YCN" customClass="GridCell" customModule="Awesome" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iWt-tI-YCN" id="Ln8-Cs-1rt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TND-n8-4cN">
+                                                    <rect key="frame" x="20" y="0.0" width="163.5" height="90"/>
+                                                    <color key="backgroundColor" red="0.99948197599999999" green="0.14964589480000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v46-vN-Gq9">
+                                                    <rect key="frame" x="191.5" y="0.0" width="163.5" height="90"/>
+                                                    <color key="backgroundColor" red="1" green="0.38696749819999998" blue="0.6742379355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TND-n8-4cN" firstAttribute="width" secondItem="Ln8-Cs-1rt" secondAttribute="height" multiplier="200:110" id="AaZ-Ld-32v"/>
+                                                <constraint firstItem="TND-n8-4cN" firstAttribute="centerY" secondItem="Ln8-Cs-1rt" secondAttribute="centerY" id="Qge-HQ-Qoo"/>
+                                                <constraint firstItem="TND-n8-4cN" firstAttribute="height" secondItem="Ln8-Cs-1rt" secondAttribute="height" id="T5R-tK-iZS"/>
+                                                <constraint firstItem="v46-vN-Gq9" firstAttribute="width" secondItem="Ln8-Cs-1rt" secondAttribute="height" multiplier="200:110" id="WnR-FA-Xlx"/>
+                                                <constraint firstItem="v46-vN-Gq9" firstAttribute="height" secondItem="Ln8-Cs-1rt" secondAttribute="height" id="YYH-Ep-md1"/>
+                                                <constraint firstItem="TND-n8-4cN" firstAttribute="leading" secondItem="Ln8-Cs-1rt" secondAttribute="leading" constant="20" symbolic="YES" id="Yuu-zf-GUY"/>
+                                                <constraint firstAttribute="trailing" secondItem="v46-vN-Gq9" secondAttribute="trailing" constant="20" symbolic="YES" id="nzi-kK-Eob"/>
+                                                <constraint firstItem="v46-vN-Gq9" firstAttribute="centerY" secondItem="Ln8-Cs-1rt" secondAttribute="centerY" id="vp4-8g-alc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="leftView" destination="TND-n8-4cN" id="czZ-Ji-G0l"/>
+                                            <outlet property="rightView" destination="v46-vN-Gq9" id="cGS-mx-jJ6"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="qdz-KD-pnF"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="IaG-9V-4qV"/>
                                 </connections>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d1g-9a-6sz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" red="0.18811133499999999" green="0.47751039270000001" blue="0.99814695119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V8L-Nt-5cw">
+                                    <size key="itemSize" width="121" height="89"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="7PW-II-n57">
+                                        <rect key="frame" x="0.0" y="0.0" width="121" height="89"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="121" height="89"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="JkY-ie-tGt"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mxc-W7-c2i"/>
+                                </connections>
+                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amv-jS-aQD" customClass="FAButton" customModule="Awesome" customModuleProvider="target">
                                 <rect key="frame" x="295" y="543" width="60" height="60"/>
                                 <constraints>
@@ -119,9 +175,13 @@
                         <constraints>
                             <constraint firstItem="Mx8-cE-Efo" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="2cn-Xm-0gB"/>
                             <constraint firstItem="Mx8-cE-Efo" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="6At-ni-sdU"/>
+                            <constraint firstItem="d1g-9a-6sz" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="JiQ-hg-bCm"/>
                             <constraint firstItem="Mx8-cE-Efo" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="MoM-c5-fH9"/>
+                            <constraint firstItem="d1g-9a-6sz" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="XDi-sk-oBw"/>
                             <constraint firstItem="amv-jS-aQD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="ayT-id-l3j"/>
                             <constraint firstItem="amv-jS-aQD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="dwR-tA-fVv"/>
+                            <constraint firstItem="d1g-9a-6sz" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="pxq-ch-WhY"/>
+                            <constraint firstItem="d1g-9a-6sz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="sxZ-jW-dSu"/>
                             <constraint firstItem="Mx8-cE-Efo" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ysB-pr-mHX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -143,12 +203,13 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="itemsCollectionView" destination="d1g-9a-6sz" id="1i1-xr-Hbl"/>
                         <outlet property="itemsTableView" destination="Mx8-cE-Efo" id="hdY-HV-XAr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="18"/>
+            <point key="canvasLocation" x="44" y="17.541229385307346"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="RyC-TY-V9g">
@@ -244,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEn-mE-kLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="35.532233883058474"/>
+            <point key="canvasLocation" x="1039" y="39"/>
         </scene>
         <!--Add New Item View Controller-->
         <scene sceneID="LIg-G2-Lzo">
@@ -423,6 +484,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aNR-c4-T8v"/>
+        <segue reference="jKM-6T-kGg"/>
     </inferredMetricsTieBreakers>
 </document>

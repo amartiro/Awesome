@@ -27,6 +27,9 @@
 		CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */; };
 		CEAF25471FCE93D300174282 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
 		CEAF25481FCE93D300174282 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
+		CEDDEF431FDA9AFF00627B27 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */; };
+		CEDDEF451FDAC0BD00627B27 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDEF441FDAC0BD00627B27 /* Helper.swift */; };
+		CEDDEF471FDE6F5B00627B27 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDEF461FDE6F5B00627B27 /* GridCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CEDDEF441FDAC0BD00627B27 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CEDDEF461FDE6F5B00627B27 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,9 +172,12 @@
 				CE7F9EBE1FC313CC00C7B5B1 /* Awesome.xcdatamodeld */,
 				CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */,
 				CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */,
+				CEDDEF461FDE6F5B00627B27 /* GridCell.swift */,
 				CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */,
 				CE30B2FD1FCC5AC700026EED /* FAButton.swift */,
 				CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */,
+				CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */,
+				CEDDEF441FDAC0BD00627B27 /* Helper.swift */,
 			);
 			path = Awesome;
 			sourceTree = "<group>";
@@ -385,8 +394,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDDEF431FDA9AFF00627B27 /* NetworkManager.swift in Sources */,
 				CE7F9EC01FC313CC00C7B5B1 /* Awesome.xcdatamodeld in Sources */,
 				CE7F9EE91FC3146E00C7B5B1 /* ItemsViewController.swift in Sources */,
+				CEDDEF471FDE6F5B00627B27 /* GridCell.swift in Sources */,
 				CE30B3001FCC62C500026EED /* AddNewItemViewController.swift in Sources */,
 				CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */,
 				CE7F9EBA1FC313CC00C7B5B1 /* ViewController.swift in Sources */,
@@ -394,6 +405,7 @@
 				CE07483A1FD58D50002C8F63 /* ArrowView.swift in Sources */,
 				CE0748361FD58B43002C8F63 /* LevelMeter.swift in Sources */,
 				CE7F9EB81FC313CC00C7B5B1 /* AppDelegate.swift in Sources */,
+				CEDDEF451FDAC0BD00627B27 /* Helper.swift in Sources */,
 				CE7F9EEB1FC326E800C7B5B1 /* ItemCell.swift in Sources */,
 				CE0748381FD58C3C002C8F63 /* CounterView.swift in Sources */,
 			);
