@@ -8,22 +8,16 @@
 
 import UIKit
 
-class GridCell: UITableViewCell {
+class GridCell: UICollectionViewCell {
 
-    @IBOutlet weak var rightView: UIView!
-    @IBOutlet weak var leftView: UIView!
+    @IBOutlet weak var levelBkg: UIView!
+    
+    @IBOutlet weak var levelLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.backgroundColor = UIColor.blue
-        
-       // rightView.backgroundColor = .red
-        // Initialization code
+        levelBkg.layer.cornerRadius = levelBkg.bounds.size.width / 2.0
+        self.contentView.backgroundColor = UIColor.green
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 
 }

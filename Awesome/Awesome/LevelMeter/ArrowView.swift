@@ -20,9 +20,30 @@ class ArrowView: UIView {
         self.backgroundColor = UIColor.clear
     }
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
+    @IBInspectable var counter: Int = 10
+            {
+            didSet {
+                if counter < level {
+                    level = counter
+                }
+            }
+        }
+    
+        @IBInspectable var level: Int = 10 {
+            didSet {
+                if level < 1 {
+                    level = 1
+                }
+                if level > counter {
+                    level = counter
+                }
+              
+                self.transform = CGAffineTransform(rotationAngle:AngleCalculator.getArrowAngleOf(segment: level - 1, ofTotal: counter))
+            }
+    
+        }
+    
+      override func draw(_ rect: CGRect) {
         // Drawing code
         let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         let circleWidth = bounds.width/10
@@ -35,7 +56,7 @@ class ArrowView: UIView {
         UIColor.black.setFill()
         trianglePath.fill()
         
-        let circleRect = CGRect(origin: CGPoint(x: center.x - circleWidth / 2, y: center.x - circleWidth / 2), size: CGSize(width: circleWidth, height: circleWidth))
+        let circleRect = CGRect(origin: CGPoint(x: center.x - circleWidth / 2, y: center.y - circleWidth / 2), size: CGSize(width: circleWidth, height: circleWidth))
         let path = UIBezierPath(ovalIn: circleRect)
         UIColor.green.setFill()
         path.fill()

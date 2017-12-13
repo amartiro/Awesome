@@ -10,13 +10,13 @@ import UIKit
 import Kingfisher
 
 class ItemDetailViewController: UIViewController {
-    var level : Int = 4
+    var level : Int = 5
 
     @IBOutlet weak var levelMeter: LevelMeter!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.levelMeter.level = 6
-        self.levelMeter.counter = 11
+        self.levelMeter.level = level
+        self.levelMeter.counter = 10
     }
 
     override func didReceiveMemoryWarning() {

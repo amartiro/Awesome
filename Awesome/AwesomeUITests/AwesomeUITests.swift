@@ -28,9 +28,17 @@ class AwesomeUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
     
+
+    func testLevelLabel() {
+        let app = XCUIApplication()
+        app.buttons["✎"].tap()
+        XCTAssertTrue(app.staticTexts["10"].exists)
+
+        let button = app.buttons["-"]
+        button.tap()
+        button.tap()
+        app.buttons["+"].tap()
+        XCTAssertTrue(app.staticTexts["9"].exists)
+    }
 }

@@ -17,7 +17,7 @@ class ItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        levelBkg.layer.cornerRadius = 22
+        levelBkg.layer.cornerRadius = levelBkg.bounds.size.width / 2.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

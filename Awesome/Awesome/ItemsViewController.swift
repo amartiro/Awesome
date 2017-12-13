@@ -42,16 +42,23 @@ class ItemsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = .yellow;
-//        NetworkManager.sharedInstance.getItems(itemType: "SNAKE") { (response, error) in
-//
-//        }
+     //   let vc = self.splitViewController?.navigationController
+        self.view.backgroundColor = .clear
+   // NetworkManager.sharedInstance.getItems(itemType: "SNAKE") { (response, error) in
+            //
+            //        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        isGrid = UIDevice.current.orientation.isLandscape &&  (self.traitCollection.verticalSizeClass == .compact) && (self.traitCollection.horizontalSizeClass == .compact)
+        updateViews()
     }
     
 
@@ -118,19 +125,22 @@ class ItemsViewController: UIViewController {
     
         if UIDevice.current.orientation.isLandscape {
             print("Landscape")
-            isGrid = true
-            itemsTableView.isHidden = true
-            itemsCollectionView.isHidden = false
-            
-        //    imageView.image = UIImage(named: const2)
+            isGrid =  isGrid || (self.traitCollection.horizontalSizeClass == .compact) && (self.traitCollection.verticalSizeClass == .regular)
+            updateViews()
         } else {
             print("Portrait")
             isGrid = false
-            itemsTableView.isHidden = false
-            itemsCollectionView.isHidden = true
-            
-    //        imageView.image = UIImage(named: const)
+            updateViews()
         }
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        
+    }
+    
+    func updateViews(){
+        itemsTableView.isHidden = isGrid
+        itemsCollectionView.isHidden = !isGrid
     }
 }
 
@@ -141,18 +151,12 @@ extension ItemsViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-//        if isGrid {
-//            let cell: GridCell = tableView.dequeueReusableCell(withIdentifier: "GridCell") as! GridCell
-//
-//            return cell
-//        }
         let cell: ItemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
         
         cell.titleLabel.text = "Samo"
-        cell.levelLbl.text = "8"
+        cell.levelLbl.text = "5"
         cell.shortDescr.text = "Call cheif"
         return cell
-        
     }
     
 }
@@ -160,18 +164,12 @@ extension ItemsViewController : UITableViewDataSource {
 extension ItemsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//       if isGrid {
-//        return 93
-//        }
         return 60;
     }
-    
 }
 
 extension ItemsViewController : UICollectionViewDelegate{
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        
-        
     }
     
 }
@@ -183,22 +181,14 @@ extension ItemsViewController : UICollectionViewDataSource{
         return 17
     }
     
-    
-    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        // Configure the cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GridCell
         
         cell.backgroundColor = .red
+        cell.levelLabel.text = "\(1 + indexPath.row  % 10)"
         
         return cell
-
-        
     }
-    
-    
-    
-    
 }
 
 extension ItemsViewController : UICollectionViewDelegateFlowLayout{
@@ -214,9 +204,4 @@ extension ItemsViewController : UICollectionViewDelegateFlowLayout{
         return CGSize(width: widthPerItem, height: widthPerItem / 3.0)
     }
 }
-    
 
-extension ItemsViewController : UIActionSheetDelegate {
-    
-    
-}

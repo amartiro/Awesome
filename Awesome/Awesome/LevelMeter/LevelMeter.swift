@@ -11,6 +11,7 @@ import UIKit
 class LevelMeter: UIView {
 
     @IBOutlet weak var counterView: CounterView!
+    @IBOutlet weak var arrowView: ArrowView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -32,12 +33,13 @@ class LevelMeter: UIView {
     var counter: Int = 1{
         didSet {
             counterView.counter = counter
+            arrowView.counter = counter
         }
     }
     
     var level: Int = 1{
         didSet {
-            counterView.level = level
+            arrowView.level = level
         }
     }
     

@@ -40,29 +40,7 @@ class AngleCalculator{
 
 @IBDesignable  class CounterView: UIView {
     
-    var arrowView = ArrowView()
-    
-    @IBInspectable var counter: Int = 10 {
-        didSet {
-            if counter < level {
-                level = counter
-            }
-        }
-    }
-    
-    @IBInspectable var level: Int = 10 {
-        didSet {
-            if level < 1 {
-                level = 1
-            }
-            if level > counter {
-                level = counter
-            }
-            
-            self.arrowView.transform = CGAffineTransform(rotationAngle:AngleCalculator.getArrowAngleOf(segment: level - 1, ofTotal: counter))
-        }
-        
-    }
+    @IBInspectable var counter: Int = 10
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,9 +54,7 @@ class AngleCalculator{
     }
     
     private func commonInit(){
-        arrowView.frame =  self.bounds
-        arrowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(arrowView)
+        self.backgroundColor = UIColor.clear
     }
     
     override func draw(_ rect: CGRect) {

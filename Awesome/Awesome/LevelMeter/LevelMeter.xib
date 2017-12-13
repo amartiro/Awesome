@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LevelMeter" customModule="Awesome" customModuleProvider="target">
             <connections>
+                <outlet property="arrowView" destination="cH6-Gx-aV2" id="pEu-5k-HdV"/>
                 <outlet property="counterView" destination="RTC-Lx-WAC" id="iBe-0f-ys0"/>
             </connections>
         </placeholder>
@@ -29,20 +30,30 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="counter">
-                            <integer key="value" value="13"/>
+                            <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="level">
                             <integer key="value" value="7"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cH6-Gx-aV2" customClass="ArrowView" customModule="Awesome" customModuleProvider="target">
+                    <rect key="frame" x="-0.5" y="-0.5" width="375" height="375"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cH6-Gx-aV2" secondAttribute="height" multiplier="1:1" id="tyK-u4-aPr"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <accessibility key="accessibilityConfiguration" identifier="LevelMeter"/>
             <constraints>
+                <constraint firstItem="cH6-Gx-aV2" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="2mf-ZG-Wm8"/>
                 <constraint firstItem="RTC-Lx-WAC" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" id="RjY-W3-KpU"/>
                 <constraint firstItem="RTC-Lx-WAC" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="YUX-kw-LdS"/>
                 <constraint firstItem="RTC-Lx-WAC" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="aKq-6w-cfE"/>
+                <constraint firstItem="cH6-Gx-aV2" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" id="gZM-gd-Cw8"/>
+                <constraint firstItem="cH6-Gx-aV2" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="gkW-AR-i0X"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
