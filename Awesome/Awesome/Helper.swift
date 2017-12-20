@@ -13,7 +13,7 @@ class Helper {
     
     static let sharedInstance: Helper = Helper()
     
-    func getItemName(itemType: ItemType) -> String {
+    static func getItemName(itemType: ItemType) -> String {
         switch itemType {
         case .snakes:
             return "SNAKES"
@@ -25,7 +25,7 @@ class Helper {
         
     }
     
-    func getItemDisplayName(itemType: ItemType) -> String {
+    static func getItemDisplayName(itemType: ItemType) -> String {
         switch itemType {
         case .snakes:
             return "Snakes"

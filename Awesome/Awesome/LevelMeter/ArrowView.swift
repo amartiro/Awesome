@@ -12,36 +12,39 @@ class ArrowView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit(){
         self.backgroundColor = UIColor.clear
     }
     
-    @IBInspectable var counter: Int = 10
-            {
-            didSet {
-                if counter < level {
-                    level = counter
-                }
+    @IBInspectable var counter: Int = 10{
+        didSet {
+            if counter < level {
+                level = counter
             }
         }
+    }
     
-        @IBInspectable var level: Int = 10 {
-            didSet {
-                if level < 1 {
-                    level = 1
-                }
-                if level > counter {
-                    level = counter
-                }
+    @IBInspectable var level: Int = 10 {
+        didSet {
+            if level < 1 {
+                level = 1
+            }
+            
+            if level > counter {
+                level = counter
+            }
               
-                self.transform = CGAffineTransform(rotationAngle:AngleCalculator.getArrowAngleOf(segment: level - 1, ofTotal: counter))
-            }
-    
+            self.transform = CGAffineTransform(rotationAngle:AngleCalculator.getArrowAngleOf(segment: level - 1, ofTotal: counter))
         }
+    }
     
       override func draw(_ rect: CGRect) {
         // Drawing code

@@ -27,7 +27,10 @@ class LevelMeter: UIView {
         let xibView = bundles!.first as! UIView
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        xibView.backgroundColor = UIColor.clear
         self.addSubview(xibView)
+        self.backgroundColor = UIColor.clear
+
     }
     
     var counter: Int = 1{
@@ -42,5 +45,4 @@ class LevelMeter: UIView {
             arrowView.level = level
         }
     }
-    
 }

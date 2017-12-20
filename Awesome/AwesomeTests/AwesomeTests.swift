@@ -57,6 +57,14 @@ class AwesomeTests: XCTestCase {
         
         XCTAssert(range1.1 - range1.0 > range2.1 - range2.0, "More segments small angle")
     }
+    
+    func testArrowViewLevel(){
+        let arrowView = ArrowView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        arrowView.counter = 10
+        arrowView.level = 15
+        XCTAssert(arrowView.level == 10, "Level cann't be greater then counter")
+        
+    }
         
     
     func testPerformanceExample() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum ItemType {
     case snakes
@@ -20,22 +21,23 @@ private enum ItemsVCConstants {
 }
 
 
-class ItemsViewController: UIViewController {
+class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDelegate {
     @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
+    @IBOutlet weak var itemsView: ItemsView!
     
     fileprivate let itemsPerRow: CGFloat = 2
     fileprivate let sectionHorizontalInset: CGFloat =  5.0
 
     fileprivate var isGrid: Bool = true
+    fileprivate var items : [CommonItem] = []
+    fileprivate var dbItems : [NSManagedObject] = []
     
     var itemType : ItemType = .snakes{
         didSet {
             if oldValue != itemType {
-                self.title = Helper.sharedInstance.getItemDisplayName(itemType: itemType)
-//                NetworkManager.sharedInstance.getItems(itemType: Helper.sharedInstance.getItemName(itemType: itemType)) { (response, error) in
-//              
-//                }
+                self.title = Helper.getItemDisplayName(itemType: itemType)
+                getItems()
             }
         }
     }
@@ -44,9 +46,23 @@ class ItemsViewController: UIViewController {
         super.viewDidLoad()
      //   let vc = self.splitViewController?.navigationController
         self.view.backgroundColor = .clear
-   // NetworkManager.sharedInstance.getItems(itemType: "SNAKE") { (response, error) in
-            //
-            //        }
+//        self.itemsView.dataSource = self as? ItemsViewDataSource
+//        self.itemsView.delegate = self as? ItemsViewDelegate
+        
+       getItems()
+    }
+    
+    func getItems() {
+        NetworkManager.sharedInstance.getItems(itemType: Helper.getItemName(itemType: itemType)) { (response, error) in
+            if !(response is NSNull) {
+                self.items.removeAll()
+                for dict in response as! [[String:AnyObject]] {
+                    let item = ItemFactory.parseItem(dict: dict)
+                    self.items.append(item)
+                }
+                self.itemsTableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +73,7 @@ class ItemsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        isGrid = UIDevice.current.orientation.isLandscape &&  (self.traitCollection.verticalSizeClass == .compact) && (self.traitCollection.horizontalSizeClass == .compact)
+        isGrid = UIDevice.current.orientation.isLandscape &&  (self.traitCollection.verticalSizeClass == .compact) && (self.traitCollection.horizontalSizeClass == .regular)
         updateViews()
     }
     
@@ -79,17 +95,17 @@ class ItemsViewController: UIViewController {
         }
         actionSheetController.addAction(cancelActionButton)
         
-        let snakeActionButton = UIAlertAction(title: Helper.sharedInstance.getItemDisplayName(itemType: .snakes), style: .default) { action -> Void in
+        let snakeActionButton = UIAlertAction(title: Helper.getItemDisplayName(itemType: .snakes), style: .default) { action -> Void in
             self.itemType = .snakes
         }
         actionSheetController.addAction(snakeActionButton)
 
-        let cardActionButton = UIAlertAction(title: Helper.sharedInstance.getItemDisplayName(itemType: .cardGames), style: .default) { action -> Void in
+        let cardActionButton = UIAlertAction(title: Helper.getItemDisplayName(itemType: .cardGames), style: .default) { action -> Void in
              self.itemType = .cardGames
         }
         actionSheetController.addAction(cardActionButton)
         
-        let tasksActionButton = UIAlertAction(title: Helper.sharedInstance.getItemDisplayName(itemType: .todos), style: .default) { action -> Void in
+        let tasksActionButton = UIAlertAction(title: Helper.getItemDisplayName(itemType: .todos), style: .default) { action -> Void in
             self.itemType = .todos
 
         }
@@ -122,7 +138,7 @@ class ItemsViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-    
+//        isGrid = UIDevice.current.orientation.isLandscape && (self.traitCollection.horizontalSizeClass == .compact) && (self.traitCollection.verticalSizeClass == .regular)
         if UIDevice.current.orientation.isLandscape {
             print("Landscape")
             isGrid =  isGrid || (self.traitCollection.horizontalSizeClass == .compact) && (self.traitCollection.verticalSizeClass == .regular)
@@ -146,19 +162,20 @@ class ItemsViewController: UIViewController {
 
 extension ItemsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
+        let item = items[indexPath.row]
+        
         let cell: ItemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
         
-        cell.titleLabel.text = "Samo"
-        cell.levelLbl.text = "5"
-        cell.shortDescr.text = "Call cheif"
+        cell.titleLabel.text = item.title
+        cell.levelLbl.text = "\(item.level)"
+        cell.shortDescr.text = item.desc
         return cell
     }
-    
 }
 
 extension ItemsViewController : UITableViewDelegate {
@@ -178,14 +195,19 @@ extension ItemsViewController : UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 17
+        return items.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let item = items[indexPath.row]
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GridCell
         
         cell.backgroundColor = .red
-        cell.levelLabel.text = "\(1 + indexPath.row  % 10)"
+        cell.levelLabel.text = "\(item.level)"
+        cell.shortDescLabel.text = item.desc
+        cell.titleLabel.text = item.title
         
         return cell
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddNewItemViewController: UIViewController {
 
@@ -16,16 +17,17 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var minusLevelButton: UIButton!
     @IBOutlet weak var plusLevelButton: UIButton!
-    @IBOutlet weak var levelMeter: LevelMeter!
     
     var level : Int = 10 {
         
         didSet {
             levelLabel?.text = "\(level)"
-            levelMeter?.level = level
-            levelMeter?.counter = 10
+//            levelMeter?.level = level
+//            levelMeter?.counter = 10
         }
     }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +38,16 @@ class AddNewItemViewController: UIViewController {
         minusLevelButton.layer.cornerRadius = 5
         plusLevelButton.layer.cornerRadius = 5
         
+    }
+    
+    @IBAction func saveButtonAction(_ sender: Any) {
+      //  save(name: "Gago")
+        
+        NetworkManager.sharedInstance.addItem(type: Helper.getItemName(itemType: .cardGames), title: "Blot Bazar", shortDesc: "Bazar Blot", longDesc: "Game for 2/4 people", level: 3) { (response, error) in
+            if !(response is NSNull) {
+                
+            }
+        }
     }
     
     @IBAction func minusLevelAction(_ sender: UIButton) {
@@ -50,7 +62,37 @@ class AddNewItemViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var minusLevelAction: UIButton!
+    func save(name: String) {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        // 1
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        // 2
+        let entity =
+            NSEntityDescription.entity(forEntityName: "Item",
+                                       in: managedContext)!
+        
+        let person = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        // 3
+        person.setValue(name, forKeyPath: "title")
+        
+        // 4
+        do {
+            try managedContext.save()
+         //   people.append(person)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

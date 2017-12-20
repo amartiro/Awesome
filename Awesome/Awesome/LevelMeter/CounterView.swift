@@ -45,7 +45,6 @@ class AngleCalculator{
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
