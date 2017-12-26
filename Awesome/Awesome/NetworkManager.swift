@@ -37,6 +37,18 @@ class NetworkManager {
         }
     }
     
+    func getItem (itemId: String, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void) {
+        
+        let path: String = baseURL + "items" + itemId
+        
+        Alamofire.request(path, method: .get).responseJSON() { response in
+            print(response)
+            
+            let result: [AnyObject] = self.handleTheResult(response)
+            responseHandle(result[0] as AnyObject?, result[1] as AnyObject?)
+        }
+    }
+    
     func getItems (itemType: String, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void) {
         
         let path: String = baseURL + "items"
@@ -44,7 +56,7 @@ class NetworkManager {
         var paramDict = [String: String]()
         paramDict["item_type"] = itemType
         
-        Alamofire.request(path, method: .post, parameters: paramDict).responseJSON() { response in
+        Alamofire.request(path, method: .get, parameters: paramDict).responseJSON() { response in
             print(response)
             
             let result: [AnyObject] = self.handleTheResult(response)
@@ -54,7 +66,7 @@ class NetworkManager {
     
     func addItem(type: String, title: String, shortDesc: String, longDesc: String, level: Int, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)  {
         
-        let path: String = baseURL + "additem"
+        let path: String = baseURL + "items"
         
         var paramDict = [String: String]()
         paramDict["title"] = title
