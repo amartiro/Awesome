@@ -5,4 +5,5 @@ use_frameworks!
 target 'Awesome' do
     pod 'Alamofire', '~> 4.5'
     pod 'Kingfisher', '~> 4.0'
+    pod 'Swinject', '~> 2.1.0'
 end

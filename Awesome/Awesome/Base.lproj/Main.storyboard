@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cHo-XV-bvt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="81A-wS-eKk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,20 +27,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gqo-EE-FDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1335" y="78"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="2TK-dx-JbO">
-            <objects>
-                <splitViewController id="cHo-XV-bvt" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="eZH-Lw-hZy"/>
-                    <connections>
-                        <segue destination="81A-wS-eKk" kind="relationship" relationship="masterViewController" id="PSR-gb-tTm"/>
-                        <segue destination="PEo-vb-YwW" kind="relationship" relationship="detailViewController" id="Ksk-Nr-DG4"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NIU-hu-Boi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2359" y="-852"/>
         </scene>
         <!--Items View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -455,7 +441,4 @@
             <point key="canvasLocation" x="61.600000000000001" y="825.33733133433293"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="q6I-66-VqO"/>
-    </inferredMetricsTieBreakers>
 </document>

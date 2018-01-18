@@ -30,15 +30,15 @@ class AwesomeUITests: XCTestCase {
     
     
 
-    func testLevelLabel() {
-        let app = XCUIApplication()
-        app.buttons["✎"].tap()
-        XCTAssertTrue(app.staticTexts["10"].exists)
-
-        let button = app.buttons["-"]
-        button.tap()
-        button.tap()
-        app.buttons["+"].tap()
-        XCTAssertTrue(app.staticTexts["9"].exists)
-    }
+//    func testLevelLabel() {
+//        let app = XCUIApplication()
+//        app.buttons["✎"].tap()
+//        XCTAssertTrue(app.staticTexts["10"].exists)
+//
+//        let button = app.buttons["-"]
+//        button.tap()
+//        button.tap()
+//        app.buttons["+"].tap()
+//        XCTAssertTrue(app.staticTexts["9"].exists)
+//    }
 }

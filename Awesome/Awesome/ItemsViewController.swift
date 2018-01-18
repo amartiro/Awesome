@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-enum ItemType {
-    case snakes
+enum ItemType : Int{
+    case snakes = 0
     case cardGames
     case todos
 }
@@ -33,6 +33,10 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     fileprivate var items : [CommonItem] = []
     fileprivate var dbItems : [NSManagedObject] = []
     
+    fileprivate var dataManager : DataSourceManager?
+    
+    fileprivate var selectedItem : CommonItem?
+    
     var itemType : ItemType = .snakes{
         didSet {
             if oldValue != itemType {
@@ -52,15 +56,17 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
        getItems()
     }
     
+    
     func getItems() {
-        NetworkManager.sharedInstance.getItems(itemType: Helper.getItemName(itemType: itemType)) { (response, error) in
-            if !(response is NSNull) {
-                self.items.removeAll()
-                for dict in response as! [[String:AnyObject]] {
-                    let item = ItemFactory.parseItem(dict: dict)
-                    self.items.append(item)
-                }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.dataManager = appDelegate.diContainer.resolve(DataSourceManager.self)!
+        
+        self.dataManager?.getItems(itemType: itemType) { (items) in
+            self.items = items
+            DispatchQueue.main.async {
                 self.itemsTableView.reloadData()
+                self.itemsCollectionView.reloadData()
+                self.updateViews()
             }
         }
     }
@@ -72,6 +78,7 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getItems()
         
         isGrid = UIDevice.current.orientation.isLandscape &&  (self.traitCollection.verticalSizeClass == .compact) && (self.traitCollection.horizontalSizeClass == .regular)
         updateViews()
@@ -111,7 +118,15 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
         }
         actionSheetController.addAction(tasksActionButton)
 
-        self.present(actionSheetController, animated: true, completion: nil)
+        if UI_USER_INTERFACE_IDIOM() == .pad {
+            let popover = UIPopoverController.init(contentViewController: actionSheetController)
+            popover.present(from: sender, permittedArrowDirections: .any, animated: true)
+          //  self.present(popover, animated: true)
+        } else {
+            self.present(actionSheetController, animated: true) {
+            }
+            
+        }
     }
     
     @IBAction func resetItemsAction(_ sender: UIBarButtonItem) {
@@ -127,13 +142,14 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
 
         if segue.identifier == ItemsVCConstants.segueToItemDetailVCId,
             let destinationVC = segue.destination as? ItemDetailViewController {
-            destinationVC.level = 5
+            destinationVC.item = selectedItem!
         }
         
         
         if segue.identifier == ItemsVCConstants.segueToNewItemVCId,
             let destinationVC = segue.destination as? AddNewItemViewController {
             destinationVC.level = 5
+            destinationVC.itemType = itemType
         }
     }
     
@@ -173,7 +189,7 @@ extension ItemsViewController : UITableViewDataSource {
         
         cell.titleLabel.text = item.title
         cell.levelLbl.text = "\(item.level)"
-        cell.shortDescr.text = item.desc
+        cell.shortDescr.text = item.shortDesc
         return cell
     }
 }
@@ -182,6 +198,11 @@ extension ItemsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60;
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?{
+        selectedItem = self.items[indexPath.row]
+        return indexPath
     }
 }
 
@@ -206,7 +227,7 @@ extension ItemsViewController : UICollectionViewDataSource{
         
         cell.backgroundColor = .red
         cell.levelLabel.text = "\(item.level)"
-        cell.shortDescLabel.text = item.desc
+        cell.shortDescLabel.text = item.shortDesc
         cell.titleLabel.text = item.title
         
         return cell

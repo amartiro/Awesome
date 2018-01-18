@@ -11,6 +11,8 @@ import CoreData
 
 class AddNewItemViewController: UIViewController {
 
+    fileprivate var dataManager : DataSourceManager?
+
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var shortDescrTextField: UITextField!
     @IBOutlet weak var longDescTextView: UITextView!
@@ -18,6 +20,7 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var minusLevelButton: UIButton!
     @IBOutlet weak var plusLevelButton: UIButton!
     
+    var itemType : ItemType!
     var level : Int = 10 {
         
         didSet {
@@ -43,11 +46,19 @@ class AddNewItemViewController: UIViewController {
     @IBAction func saveButtonAction(_ sender: Any) {
       //  save(name: "Gago")
         
-        NetworkManager.sharedInstance.addItem(type: Helper.getItemName(itemType: .cardGames), title: "Blot Bazar", shortDesc: "Bazar Blot", longDesc: "Game for 2/4 people", level: 3) { (response, error) in
-            if !(response is NSNull) {
+        let item : CommonItem = CommonItem()
+        item.title = titleTextField.text!
+        item.shortDesc = shortDescrTextField.text!
+        item.longDesc = longDescTextView.text
+        item.type = Helper.getItemName(itemType: itemType)
+        item.level = level
                 
-            }
-        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.dataManager = appDelegate.diContainer.resolve(DataSourceManager.self)!
+        
+        self.dataManager?.addItem(item: item)
+        
+      //  self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func minusLevelAction(_ sender: UIButton) {
@@ -59,37 +70,6 @@ class AddNewItemViewController: UIViewController {
     @IBAction func plusLevelAction(_ sender: UIButton) {
         if level < 10 {
             level = level + 1
-        }
-    }
-    
-    func save(name: String) {
-        
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        // 1
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        // 2
-        let entity =
-            NSEntityDescription.entity(forEntityName: "Item",
-                                       in: managedContext)!
-        
-        let person = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        // 3
-        person.setValue(name, forKeyPath: "title")
-        
-        // 4
-        do {
-            try managedContext.save()
-         //   people.append(person)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     

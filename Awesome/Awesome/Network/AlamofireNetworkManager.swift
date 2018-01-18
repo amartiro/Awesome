@@ -1,20 +1,21 @@
 //
-//  NetworkManager.swift
+//  AlamofireNetworkManager.swift
 //  Awesome
 //
-//  Created by Artak on 12/8/17.
+//  Created by Artak on 12/27/17.
 //  Copyright © 2017 Artak. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-class NetworkManager {
-   
-    var countOfRequest: Int = 0
 
+class AlamofireNetworkManager : NetworkManager{
+    
+    var countOfRequest: Int = 0
+    
     let baseURL = "http://138.197.26.187/"
-    static let sharedInstance: NetworkManager = NetworkManager()
+    static let sharedInstance: AlamofireNetworkManager = AlamofireNetworkManager()
     
     func handleTheResult (_ inResponse: DataResponse<Any>) -> [AnyObject] {
         
@@ -49,12 +50,14 @@ class NetworkManager {
         }
     }
     
-    func getItems (itemType: String, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void) {
+    func getItems (itemType: String?, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void) {
         
         let path: String = baseURL + "items"
         
         var paramDict = [String: String]()
-        paramDict["item_type"] = itemType
+        if itemType != nil {
+            paramDict["item_type"] = itemType
+        }
         
         Alamofire.request(path, method: .get, parameters: paramDict).responseJSON() { response in
             print(response)
@@ -64,17 +67,36 @@ class NetworkManager {
         }
     }
     
-    func addItem(type: String, title: String, shortDesc: String, longDesc: String, level: Int, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)  {
+    func addItem(item: CommonItemProtocol, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)  {
         
         let path: String = baseURL + "items"
         
         var paramDict = [String: String]()
-        paramDict["title"] = title
-        paramDict["item_type"] = type
-        paramDict["short_desc"] = shortDesc
-        paramDict["long_desc"] = longDesc
-        paramDict["level"] = "\(level)"
-
+        paramDict["title"] = item.title
+        paramDict["item_type"] = item.type
+        paramDict["short_desc"] = item.shortDesc
+        paramDict["long_desc"] = item.longDesc
+        paramDict["level"] = "\(item.level)"
+        
+        Alamofire.request(path, method: .post, parameters: paramDict).responseJSON() { response in
+            print(response)
+            
+            let result: [AnyObject] = self.handleTheResult(response)
+            responseHandle(result[0] as AnyObject?, result[1] as AnyObject?)
+        }
+    }
+    
+    func editItem(item : CommonItemProtocol, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)  {
+        
+        let path: String = baseURL + "items"
+        
+        var paramDict = [String: String]()
+        paramDict["title"] = item.title
+        paramDict["item_type"] = item.type
+        paramDict["short_desc"] = item.shortDesc
+        paramDict["long_desc"] = item.longDesc
+        paramDict["level"] = "\(item.level)"
+        
         Alamofire.request(path, method: .post, parameters: paramDict).responseJSON() { response in
             print(response)
             
@@ -83,5 +105,3 @@ class NetworkManager {
         }
     }
 }
-    
-

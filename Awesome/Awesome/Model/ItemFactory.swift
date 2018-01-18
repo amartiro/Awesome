@@ -22,8 +22,18 @@ class ItemFactory: UIView {
         default:
             return SnackItem(withDict: dict)
         }
-        
     }
-
-
+    
+     static func parseManagedItem(itemProtocol : CommonItemProtocol)-> CommonItem{
+        switch itemProtocol.type {
+        case "SNAKES":
+            return SnackItem(withProtocl: itemProtocol)
+        case "TODOS":
+            return TaskItem(withProtocl: itemProtocol)
+        case "CARDGAMES":
+            return CardGameItem(withProtocl: itemProtocol)
+        default:
+            return SnackItem(withProtocl: itemProtocol)
+        }
+    }
 }

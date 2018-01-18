@@ -50,11 +50,19 @@
 		CE7F9EE91FC3146E00C7B5B1 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */; };
 		CE7F9EEB1FC326E800C7B5B1 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */; };
 		CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */; };
-		CEAF25471FCE93D300174282 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
-		CEAF25481FCE93D300174282 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDAD2F01CDEF4565DAB500F /* Pods_Awesome.framework */; };
+		CE9694561FF3B4B300B63F25 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694551FF3B4B300B63F25 /* AlamofireNetworkManager.swift */; };
+		CE9694591FF3B4FF00B63F25 /* NetworkFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694581FF3B4FF00B63F25 /* NetworkFactory.swift */; };
+		CE96945F1FF3B75D00B63F25 /* DataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96945E1FF3B75D00B63F25 /* DataSourceManager.swift */; };
+		CE9694621FF3B77600B63F25 /* DataSourceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694611FF3B77600B63F25 /* DataSourceFactory.swift */; };
+		CE9694651FF3D9FD00B63F25 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694641FF3D9FD00B63F25 /* DataManager.swift */; };
+		CE9694681FF3DB6C00B63F25 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694671FF3DB6C00B63F25 /* DatabaseManager.swift */; };
+		CE96946A1FF3DB8300B63F25 /* DatabaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694691FF3DB8300B63F25 /* DatabaseFactory.swift */; };
+		CE96946C1FF3DB9B00B63F25 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96946B1FF3DB9B00B63F25 /* CoreDataManager.swift */; };
+		CEC2566020089C86000D66B3 /* CollectionDataManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2565F20089C86000D66B3 /* CollectionDataManger.swift */; };
 		CEDDEF431FDA9AFF00627B27 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */; };
 		CEDDEF451FDAC0BD00627B27 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDEF441FDAC0BD00627B27 /* Helper.swift */; };
 		CEDDEF471FDE6F5B00627B27 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDEF461FDE6F5B00627B27 /* GridCell.swift */; };
+		CEDE3B602004B215007A12C2 /* ManagedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE3B5F2004B215007A12C2 /* ManagedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,9 +118,19 @@
 		CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		CE9694551FF3B4B300B63F25 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
+		CE9694581FF3B4FF00B63F25 /* NetworkFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFactory.swift; sourceTree = "<group>"; };
+		CE96945E1FF3B75D00B63F25 /* DataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceManager.swift; sourceTree = "<group>"; };
+		CE9694611FF3B77600B63F25 /* DataSourceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceFactory.swift; sourceTree = "<group>"; };
+		CE9694641FF3D9FD00B63F25 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		CE9694671FF3DB6C00B63F25 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		CE9694691FF3DB8300B63F25 /* DatabaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFactory.swift; sourceTree = "<group>"; };
+		CE96946B1FF3DB9B00B63F25 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CEC2565F20089C86000D66B3 /* CollectionDataManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataManger.swift; sourceTree = "<group>"; };
 		CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEDDEF441FDAC0BD00627B27 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CEDDEF461FDE6F5B00627B27 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		CEDE3B5F2004B215007A12C2 /* ManagedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAF25471FCE93D300174282 /* Pods_Awesome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAF25481FCE93D300174282 /* Pods_Awesome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +236,10 @@
 		CE7F9EB61FC313CC00C7B5B1 /* Awesome */ = {
 			isa = PBXGroup;
 			children = (
+				CEC2565A20089B96000D66B3 /* Modules */,
+				CE9694661FF3DB5400B63F25 /* Database */,
+				CE96945D1FF3B74A00B63F25 /* Data */,
+				CE9694541FF3B40600B63F25 /* Network */,
 				CE781FE81FE2C27B00EB1F8C /* Model */,
 				CE0748321FD58AE8002C8F63 /* LevelMeter */,
 				CE7F9EB71FC313CC00C7B5B1 /* AppDelegate.swift */,
@@ -228,7 +248,6 @@
 				CE7F9EC11FC313CC00C7B5B1 /* Assets.xcassets */,
 				CE7F9EC31FC313CC00C7B5B1 /* LaunchScreen.storyboard */,
 				CE7F9EC61FC313CC00C7B5B1 /* Info.plist */,
-				CE7F9EBE1FC313CC00C7B5B1 /* Awesome.xcdatamodeld */,
 				CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */,
 				CE781FF91FE3B26C00EB1F8C /* View */,
 				CE7F9EEA1FC326E800C7B5B1 /* ItemCell.swift */,
@@ -236,7 +255,6 @@
 				CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */,
 				CE30B2FD1FCC5AC700026EED /* FAButton.swift */,
 				CE30B2FF1FCC62C500026EED /* AddNewItemViewController.swift */,
-				CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */,
 				CEDDEF441FDAC0BD00627B27 /* Helper.swift */,
 			);
 			path = Awesome;
@@ -258,6 +276,86 @@
 				CE7F9EDC1FC313CC00C7B5B1 /* Info.plist */,
 			);
 			path = AwesomeUITests;
+			sourceTree = "<group>";
+		};
+		CE9694541FF3B40600B63F25 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CEDDEF421FDA9AFF00627B27 /* NetworkManager.swift */,
+				CE9694551FF3B4B300B63F25 /* AlamofireNetworkManager.swift */,
+				CE9694581FF3B4FF00B63F25 /* NetworkFactory.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CE96945D1FF3B74A00B63F25 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CE96945E1FF3B75D00B63F25 /* DataSourceManager.swift */,
+				CE9694641FF3D9FD00B63F25 /* DataManager.swift */,
+				CE9694611FF3B77600B63F25 /* DataSourceFactory.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		CE9694661FF3DB5400B63F25 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				CE9694671FF3DB6C00B63F25 /* DatabaseManager.swift */,
+				CE9694691FF3DB8300B63F25 /* DatabaseFactory.swift */,
+				CE96946B1FF3DB9B00B63F25 /* CoreDataManager.swift */,
+				CEDE3B5E2004B1FD007A12C2 /* Entities */,
+				CE7F9EBE1FC313CC00C7B5B1 /* Awesome.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		CEC2565A20089B96000D66B3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2565D20089BD9000D66B3 /* Detail */,
+				CEC2565C20089BC7000D66B3 /* Add */,
+				CEC2565B20089BAF000D66B3 /* Collection */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CEC2565B20089BAF000D66B3 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2565E20089C61000D66B3 /* Manager */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		CEC2565C20089BC7000D66B3 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		CEC2565D20089BD9000D66B3 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		CEC2565E20089C61000D66B3 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2565F20089C86000D66B3 /* CollectionDataManger.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		CEDE3B5E2004B1FD007A12C2 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CEDE3B5F2004B215007A12C2 /* ManagedItem.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,7 +424,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Artak;
 				TargetAttributes = {
 					CE7F9EB31FC313CC00C7B5B1 = {
@@ -442,11 +540,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Awesome/Pods-Awesome-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -461,6 +561,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDDEF431FDA9AFF00627B27 /* NetworkManager.swift in Sources */,
+				CE96946A1FF3DB8300B63F25 /* DatabaseFactory.swift in Sources */,
+				CE96945F1FF3B75D00B63F25 /* DataSourceManager.swift in Sources */,
 				CE69C7EE1FE79B2A00FC71E4 /* ItemsView.swift in Sources */,
 				CE781FEA1FE2C51A00EB1F8C /* CommonItem.swift in Sources */,
 				CE7F9EC01FC313CC00C7B5B1 /* Awesome.xcdatamodeld in Sources */,
@@ -470,17 +572,25 @@
 				CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */,
 				CE7F9EBA1FC313CC00C7B5B1 /* ViewController.swift in Sources */,
 				CE781FF21FE3B20D00EB1F8C /* ItemDetailView.swift in Sources */,
+				CE9694651FF3D9FD00B63F25 /* DataManager.swift in Sources */,
+				CEDE3B602004B215007A12C2 /* ManagedItem.swift in Sources */,
 				CE30B2FE1FCC5AC700026EED /* FAButton.swift in Sources */,
+				CE9694561FF3B4B300B63F25 /* AlamofireNetworkManager.swift in Sources */,
+				CE9694591FF3B4FF00B63F25 /* NetworkFactory.swift in Sources */,
 				CE69C7F41FE9416B00FC71E4 /* CardGameItem.swift in Sources */,
 				CE69C7F21FE9414A00FC71E4 /* TaskItem.swift in Sources */,
 				CE781FEE1FE2C7FD00EB1F8C /* SnackItem.swift in Sources */,
 				CE69C7F01FE93EB200FC71E4 /* ItemFactory.swift in Sources */,
+				CEC2566020089C86000D66B3 /* CollectionDataManger.swift in Sources */,
 				CE07483A1FD58D50002C8F63 /* ArrowView.swift in Sources */,
 				CE0748361FD58B43002C8F63 /* LevelMeter.swift in Sources */,
 				CE7F9EB81FC313CC00C7B5B1 /* AppDelegate.swift in Sources */,
+				CE9694621FF3B77600B63F25 /* DataSourceFactory.swift in Sources */,
 				CEDDEF451FDAC0BD00627B27 /* Helper.swift in Sources */,
+				CE96946C1FF3DB9B00B63F25 /* CoreDataManager.swift in Sources */,
 				CE7F9EEB1FC326E800C7B5B1 /* ItemCell.swift in Sources */,
 				CE0748381FD58C3C002C8F63 /* CounterView.swift in Sources */,
+				CE9694681FF3DB6C00B63F25 /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
