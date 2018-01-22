@@ -14,7 +14,7 @@ protocol NetworkManager {
     func getItem (itemId: String, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)
     func addItem(item : CommonItemProtocol, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)
     func editItem(item : CommonItemProtocol, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)
-
+    func deleteItem(item : CommonItemProtocol, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void)
 }
     
 

@@ -104,4 +104,16 @@ class AlamofireNetworkManager : NetworkManager{
             responseHandle(result[0] as AnyObject?, result[1] as AnyObject?)
         }
     }
+    
+    func deleteItem(item : CommonItemProtocol, _ responseHandle: @escaping (_ response: AnyObject?, _ error: AnyObject?) -> Void){
+        let path: String = baseURL + "items/" + item.id
+        
+        Alamofire.request(path, method: .delete).responseJSON() { response in
+            print(response)
+            
+            let result: [AnyObject] = self.handleTheResult(response)
+            responseHandle(result[0] as AnyObject?, result[1] as AnyObject?)
+        }
+        
+    }
 }

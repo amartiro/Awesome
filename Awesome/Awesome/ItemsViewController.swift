@@ -83,17 +83,7 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
         isGrid = UIDevice.current.orientation.isLandscape &&  (self.traitCollection.verticalSizeClass == .compact) && (self.traitCollection.horizontalSizeClass == .regular)
         updateViews()
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func editTypeAction(_ sender: UIBarButtonItem) {
         let actionSheetController = UIAlertController(title: "Please select Item type", message: nil, preferredStyle: .actionSheet)
         
@@ -133,10 +123,6 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     
     }
     
-    @IBAction func PlusButtonAction(_ sender: UIButton) {
-   
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
 
@@ -145,11 +131,10 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
             destinationVC.item = selectedItem!
         }
         
-        
         if segue.identifier == ItemsVCConstants.segueToNewItemVCId,
             let destinationVC = segue.destination as? AddNewItemViewController {
             destinationVC.level = 5
-            destinationVC.itemType = itemType
+            destinationVC.type = Helper.getItemName(itemType: itemType)
         }
     }
     

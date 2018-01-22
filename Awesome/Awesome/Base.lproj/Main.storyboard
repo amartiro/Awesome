@@ -255,12 +255,31 @@
                                 <rect key="frame" x="-0.5" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scX-7B-eLi" customClass="FAButton" customModule="Awesome" customModuleProvider="target">
+                                <rect key="frame" x="299" y="547" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.99990516900000004" green="1" blue="0.99987047910000004" alpha="0.89412992290000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="scX-7B-eLi" secondAttribute="height" multiplier="1:1" id="RMB-h7-ur9"/>
+                                    <constraint firstAttribute="width" constant="60" id="bQX-Xu-kLp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="✎">
+                                    <color key="titleColor" red="0.99990516900000004" green="1" blue="0.99987047910000004" alpha="0.89412992290000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.99990516900000004" green="1" blue="0.99987047910000004" alpha="0.89412992290000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editButtonAction:" destination="PEo-vb-YwW" eventType="touchUpInside" id="DXH-4J-urw"/>
+                                    <segue destination="cYR-V7-XaB" kind="show" identifier="showEditItem" id="Fkg-tP-sb5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8aA-Ip-GOD" firstAttribute="centerY" secondItem="6rL-o6-pop" secondAttribute="centerY" id="2bv-dI-9Nw"/>
+                            <constraint firstItem="6rL-o6-pop" firstAttribute="trailing" secondItem="scX-7B-eLi" secondAttribute="trailing" constant="16" id="FSE-Gm-PY5"/>
                             <constraint firstItem="8aA-Ip-GOD" firstAttribute="height" secondItem="6rL-o6-pop" secondAttribute="height" id="i7O-ix-YuA"/>
                             <constraint firstItem="8aA-Ip-GOD" firstAttribute="width" secondItem="6rL-o6-pop" secondAttribute="width" id="mNn-yB-QBq"/>
+                            <constraint firstItem="6rL-o6-pop" firstAttribute="bottom" secondItem="scX-7B-eLi" secondAttribute="bottom" constant="16" id="mSd-3A-aUP"/>
                             <constraint firstItem="8aA-Ip-GOD" firstAttribute="centerX" secondItem="6rL-o6-pop" secondAttribute="centerX" id="qh6-AH-fNY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6rL-o6-pop"/>
@@ -441,4 +460,7 @@
             <point key="canvasLocation" x="61.600000000000001" y="825.33733133433293"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fkg-tP-sb5"/>
+    </inferredMetricsTieBreakers>
 </document>

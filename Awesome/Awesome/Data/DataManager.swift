@@ -26,7 +26,7 @@ class DataManager : DataSourceManager {
     
     func loadData() {
         var items : [CommonItem] = []
-        self.networkManager.getItems(itemType: nil) { (response, error) in
+        networkManager.getItems(itemType: nil) { (response, error) in
             if !(response is NSNull) {
                 for dict in response as! [[String:AnyObject]] {
                     let item = ItemFactory.parseItem(dict: dict)
@@ -48,7 +48,7 @@ class DataManager : DataSourceManager {
     }
     
     func addItem(item : CommonItem) {
-        self.networkManager.addItem(item: item) { (response, error) in
+        networkManager.addItem(item: item) { (response, error) in
             print(error ?? "No Error", response!)
         }
 
@@ -56,11 +56,21 @@ class DataManager : DataSourceManager {
     }
     
     func editItem(item : CommonItem) {
-        self.networkManager.addItem(item: item) { (response, error) in
+        networkManager.editItem(item: item) { (response, error) in
             print(error ?? "No Error", response!)
         }
         
+        databaseManager.editItem(item: item)
     }
+    
+    func deleteItem(item : CommonItem) {
+        networkManager.deleteItem(item: item) { (response, error) in
+            print(error ?? "No Error", response!)
+        }
+        
+        databaseManager.deleteItem(item: item)
+    }
+
     
     func save(){
         databaseManager.save()

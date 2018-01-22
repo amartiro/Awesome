@@ -30,7 +30,6 @@ class LevelMeter: UIView {
         xibView.backgroundColor = UIColor.clear
         self.addSubview(xibView)
         self.backgroundColor = UIColor.clear
-
     }
     
     var counter: Int = 1{

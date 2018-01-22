@@ -20,13 +20,14 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var minusLevelButton: UIButton!
     @IBOutlet weak var plusLevelButton: UIButton!
     
-    var itemType : ItemType!
+    var item : CommonItem?
+
+    
+    var type : String!
     var level : Int = 10 {
         
         didSet {
             levelLabel?.text = "\(level)"
-//            levelMeter?.level = level
-//            levelMeter?.counter = 10
         }
     }
     
@@ -41,6 +42,14 @@ class AddNewItemViewController: UIViewController {
         minusLevelButton.layer.cornerRadius = 5
         plusLevelButton.layer.cornerRadius = 5
         
+        if let item = self.item {
+            titleTextField.text = item.title
+            shortDescrTextField.text = item.shortDesc
+            level = item.level
+            longDescTextView.text = item.longDesc
+            self.type = item.type
+        }
+        
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
@@ -50,7 +59,7 @@ class AddNewItemViewController: UIViewController {
         item.title = titleTextField.text!
         item.shortDesc = shortDescrTextField.text!
         item.longDesc = longDescTextView.text
-        item.type = Helper.getItemName(itemType: itemType)
+        item.type = type
         item.level = level
                 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

@@ -14,5 +14,7 @@ protocol DataSourceManager {
     func getItems(itemType : ItemType, completion: @escaping (([CommonItem]) -> Void))
     func addItem(item : CommonItem)
     func editItem(item : CommonItem)
+    func deleteItem(item : CommonItem)
+    
     func save()
 }

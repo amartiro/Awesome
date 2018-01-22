@@ -91,14 +91,6 @@ class CoreDataManager : DatabaseManager {
         return todoItems
     }
     
-//    func addItem(item : CommonItem)  {
-//        coreDataStore?.newItem(item: item)
-//    }
-//
-//    func editItem(item : CommonItem)  {
-//        coreDataStore?.editItem(item: item)
-//    }
-    
     func addOrUpdateItem(item : CommonItem)  {
         let predicate = NSPredicate(format: "id == %@", item.id)
 
@@ -166,7 +158,60 @@ class CoreDataManager : DatabaseManager {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+    func editItem(item : CommonItem) {
         
+        let predicate = NSPredicate(format: "id == %@", item.id)
+        
+        let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
+        fetchRequest.predicate = predicate
+        
+        context.perform {
+            let queryResults = try? self.context.fetch(fetchRequest)
+            let managedResults = queryResults! as! [ManagedItem]
+            
+            if let managedItem = managedResults.first {
+                
+                managedItem.imageUrl = item.imageUrl
+                managedItem.level = item.level
+                managedItem.shortDesc = item.shortDesc
+                managedItem.longDesc = item.longDesc
+                managedItem.title = item.title
+            }
+                
+            do {
+                try self.context.save()
+                print("Success")
+                //   people.append(person)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
+    func deleteItem(item : CommonItem) {
+        let predicate = NSPredicate(format: "id == %@", item.id)
+        
+        let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
+        fetchRequest.predicate = predicate
+        
+        context.perform {
+            let queryResults = try? self.context.fetch(fetchRequest)
+            let managedResults = queryResults! as! [ManagedItem]
+            
+            for object in managedResults {
+                self.context.delete(object)
+            }
+            
+            do {
+                try self.context.save()
+                print("Success")
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+        
+    }
 
     
 }
