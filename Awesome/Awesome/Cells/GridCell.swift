@@ -12,13 +12,13 @@ class GridCell: UICollectionViewCell {
 
     @IBOutlet weak var levelBkg: UIView!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var shortDescLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var levelLabel: UILabel?
+    @IBOutlet weak var shortDescLabel: UILabel?
     override func awakeFromNib() {
         super.awakeFromNib()
         levelBkg.layer.cornerRadius = levelBkg.bounds.size.width / 2.0
-        self.contentView.backgroundColor = UIColor.green
+        self.contentView.backgroundColor = UIColor.white
     }
 
 

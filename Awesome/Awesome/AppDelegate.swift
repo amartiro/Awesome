@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var diContainer : Container = Container()
+  
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -32,6 +33,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                               databaseManager: c.resolve(DatabaseManager.self)! )
         }
         
+        diContainer.register(RootWireframe.self) { c in RootWireframe.init() }
+        diContainer.register(MainWireframe.self) { c in MainWireframe.init() }
+        diContainer.register(CollectionWireframe.self) { c in CollectionWireframe.init() }
+        diContainer.register(AddItemWireframe.self) { c in AddItemWireframe.init() }
+        diContainer.register(ItemDetailsWireframe.self) { c in ItemDetailsWireframe.init() }
+        diContainer.register(EditItemWireframe.self) { c in EditItemWireframe.init() }
+
+        diContainer.register(CollectionPresenter.self) { c in CollectionPresenter.init() }
+        diContainer.register(MainPresenter.self) { c in MainPresenter.init() }
+        diContainer.register(AddItemPresenter.self) { c in AddItemPresenter.init() }
+        diContainer.register(ItemDetailsPresenter.self) { c in ItemDetailsPresenter.init() }
+        diContainer.register(EditItemPresenter.self) { c in EditItemPresenter.init() }
+        
+        diContainer.register(CollectionDataManager.self) { c in CollectionDataManager.init(dataManager: c.resolve(DataSourceManager.self)! ) }
+        diContainer.register(MainDataManager.self) { c in MainDataManager.init(dataManager: c.resolve(DataSourceManager.self)! ) }
+        diContainer.register(AddItemDataManager.self) { c in AddItemDataManager.init(dataManager: c.resolve(DataSourceManager.self)! ) }
+        diContainer.register(ItemDetailsDataManager.self) { c in ItemDetailsDataManager.init(dataManager: c.resolve(DataSourceManager.self)! ) }
+        diContainer.register(EditItemDataManager.self) { c in EditItemDataManager.init(dataManager: c.resolve(DataSourceManager.self)! ) }
+
+        diContainer.register(CollectionInteractor.self) {
+            c in CollectionInteractor.init(dataManager: c.resolve(CollectionDataManager.self)!)
+        }
+        diContainer.register(MainInteractor.self) {
+            c in MainInteractor.init(dataManager: c.resolve(MainDataManager.self)!)
+        }
+        diContainer.register(AddItemInteractor.self) {
+            c in AddItemInteractor.init(dataManager: c.resolve(AddItemDataManager.self)!)
+        }
+        diContainer.register(ItemDetailsInteractor.self) {
+            c in ItemDetailsInteractor.init(dataManager: c.resolve(ItemDetailsDataManager.self)!)
+        }
+        diContainer.register(EditItemInteractor.self) {
+            c in EditItemInteractor.init(dataManager: c.resolve(EditItemDataManager.self)!)
+        }
+        
+        let appDependencies = AppDependencies()
+
+        appDependencies.installRootViewControllerIntoWindow(window!)
         
         return true
     }

@@ -11,6 +11,7 @@ import UIKit
 
 class ItemDetailView: UIView {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,6 +35,8 @@ class ItemDetailView: UIView {
         let xibView = bundles!.first as! UIView
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        scrollView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleHeight];
         self.addSubview(xibView)
         levelMeter.counter = 10
         levelMeter.level = 4

@@ -57,6 +57,19 @@ class CoreDataManager : DatabaseManager {
         }
     }
     
+    func reset() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    
+        do {
+            try self.context.execute(deleteRequest)
+            print("Delete Success")
+            //   people.append(person)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     private func fetchEntries(_ predicate: NSPredicate, completionBlock: @escaping (([ManagedItem]) -> Void)) {
         let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
         fetchRequest.predicate = predicate
@@ -80,6 +93,16 @@ class CoreDataManager : DatabaseManager {
         }
 
     }
+    
+    func getItem(itemId : String, completion: @escaping ((CommonItem?) -> Void)) {
+        let predicate = NSPredicate(format: "id == %@", itemId)
+        fetchEntries(predicate) { entries in
+            let items = self.itemsFromDataStoreEntries(entries)
+            completion(items.first)
+        }
+        
+    }
+    
 
     func itemsFromDataStoreEntries(_ entries: [ManagedItem]) -> [CommonItem] {
 

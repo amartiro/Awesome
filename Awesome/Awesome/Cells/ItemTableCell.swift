@@ -1,14 +1,14 @@
 //
-//  ItemCell.swift
+//  ItemTableCell.swift
 //  Awesome
 //
-//  Created by Artak on 11/20/17.
-//  Copyright © 2017 Artak. All rights reserved.
+//  Created by Artak on 2/14/18.
+//  Copyright © 2018 Artak. All rights reserved.
 //
 
 import UIKit
 
-class ItemCell: UITableViewCell {
+class ItemTableCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var shortDescr: UILabel!
@@ -17,7 +17,8 @@ class ItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        levelBkg.layer.cornerRadius = levelBkg.bounds.size.width / 2.0
+        // Initialization code
+         levelBkg.layer.cornerRadius = levelBkg.bounds.size.width / 2.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,5 +26,5 @@ class ItemCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

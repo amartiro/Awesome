@@ -41,24 +41,42 @@ class DataManager : DataSourceManager {
         }
     }
     
+    func reset() {
+        databaseManager.reset()
+        
+       // let loaded = UserDefaults.standard.value(forKey: "Loaded")
+       // if loaded == nil {
+            loadData()
+            UserDefaults.standard.set(true, forKey: "Loaded")
+            UserDefaults.standard.synchronize()
+      //  }
+    }
+    
     func getItems(itemType : ItemType, completion: @escaping (([CommonItem]) -> Void)) {
         databaseManager.getItems(itemType: itemType) { (items) in
             completion(items)
         }
     }
     
-    func addItem(item : CommonItem) {
-        networkManager.addItem(item: item) { (response, error) in
-            print(error ?? "No Error", response!)
+    func getItem(itemId : String, completion: @escaping ((CommonItem?) -> Void)) {
+        databaseManager.getItem(itemId: itemId) { (item) in
+            completion(item)
         }
+        
+    }
+    
+    func addItem(item : CommonItem) {
+//        networkManager.addItem(item: item) { (response, error) in
+//            print(error ?? "No Error", response!)
+//        }
 
         self.databaseManager.addOrUpdateItem(item: item)
     }
     
     func editItem(item : CommonItem) {
-        networkManager.editItem(item: item) { (response, error) in
-            print(error ?? "No Error", response!)
-        }
+//        networkManager.editItem(item: item) { (response, error) in
+//            print(error ?? "No Error", response!)
+//        }
         
         databaseManager.editItem(item: item)
     }

@@ -49,11 +49,9 @@ class AddNewItemViewController: UIViewController {
             longDescTextView.text = item.longDesc
             self.type = item.type
         }
-        
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
-      //  save(name: "Gago")
         
         let item : CommonItem = CommonItem()
         item.title = titleTextField.text!

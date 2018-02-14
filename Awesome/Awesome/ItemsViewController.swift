@@ -18,20 +18,22 @@ enum ItemType : Int{
 private enum ItemsVCConstants {
     static let segueToItemDetailVCId = "showItemDetail"
     static let segueToNewItemVCId = "showNewItem"
+
 }
 
 
-class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDelegate {
+class ItemsViewController: UIViewController {
+
     @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
-    @IBOutlet weak var itemsView: ItemsView!
+    @IBOutlet weak var itemDetailView: ItemDetailView!
+   
+    @IBOutlet weak var listWidth: NSLayoutConstraint!
     
     fileprivate let itemsPerRow: CGFloat = 2
     fileprivate let sectionHorizontalInset: CGFloat =  5.0
-
-    fileprivate var isGrid: Bool = true
+    
     fileprivate var items : [CommonItem] = []
-    fileprivate var dbItems : [NSManagedObject] = []
     
     fileprivate var dataManager : DataSourceManager?
     
@@ -48,12 +50,13 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   let vc = self.splitViewController?.navigationController
+        self.itemsTableView.register(UINib(nibName: "ItemTableCell", bundle: nil), forCellReuseIdentifier: "ItemTableCell")
+
         self.view.backgroundColor = .clear
-//        self.itemsView.dataSource = self as? ItemsViewDataSource
-//        self.itemsView.delegate = self as? ItemsViewDelegate
-        
-       getItems()
+        self.itemDetailView.isHidden = (UIDevice.current.userInterfaceIdiom == .phone)
+        listWidth.constant = (UIDevice.current.userInterfaceIdiom == .phone ? 1.0 : 0.1) * UIScreen.main.bounds.width
+
+        getItems()
     }
     
     
@@ -70,18 +73,10 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getItems()
-        
-        isGrid = UIDevice.current.orientation.isLandscape &&  (self.traitCollection.verticalSizeClass == .compact) && (self.traitCollection.horizontalSizeClass == .regular)
-        updateViews()
     }
 
     @IBAction func editTypeAction(_ sender: UIBarButtonItem) {
@@ -109,9 +104,18 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
         actionSheetController.addAction(tasksActionButton)
 
         if UI_USER_INTERFACE_IDIOM() == .pad {
+         //   actionSheetController.modalPresentationStyle
+         //   actionSheetController.present(sender, animated: true, completion: {
+                
+         //   })
+        //    actionSheetController.modalPresentationStyle = .popover
+         //   actionSheetController.popoverPresentationController?.sourceView = sender.customView
+        //    self .present(actionSheetController, animated: true, completion: {
+                
+       //     })
             let popover = UIPopoverController.init(contentViewController: actionSheetController)
             popover.present(from: sender, permittedArrowDirections: .any, animated: true)
-          //  self.present(popover, animated: true)
+//          //  self.present(popover, animated: true)
         } else {
             self.present(actionSheetController, animated: true) {
             }
@@ -120,12 +124,10 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     }
     
     @IBAction func resetItemsAction(_ sender: UIBarButtonItem) {
-    
+        dataManager?.reset()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-
         if segue.identifier == ItemsVCConstants.segueToItemDetailVCId,
             let destinationVC = segue.destination as? ItemDetailViewController {
             destinationVC.item = selectedItem!
@@ -139,16 +141,12 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        isGrid = UIDevice.current.orientation.isLandscape && (self.traitCollection.horizontalSizeClass == .compact) && (self.traitCollection.verticalSizeClass == .regular)
         if UIDevice.current.orientation.isLandscape {
             print("Landscape")
-            isGrid =  isGrid || (self.traitCollection.horizontalSizeClass == .compact) && (self.traitCollection.verticalSizeClass == .regular)
-            updateViews()
         } else {
             print("Portrait")
-            isGrid = false
-            updateViews()
         }
+        updateViews()
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -156,8 +154,19 @@ class ItemsViewController: UIViewController, ItemsViewDataSource, ItemsViewDeleg
     }
     
     func updateViews(){
+        let isGrid = UIDevice.current.orientation.isLandscape && (UIDevice.current.userInterfaceIdiom == .phone)
+       
         itemsTableView.isHidden = isGrid
         itemsCollectionView.isHidden = !isGrid
+    }
+    
+    func showSelectedItemDetail(){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "ItemDetailVC") as! ItemDetailViewController
+        
+        viewController.item = selectedItem!
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
 }
 
@@ -167,11 +176,10 @@ extension ItemsViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let item = items[indexPath.row]
         
-        let cell: ItemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableCell") as! ItemTableCell
         cell.titleLabel.text = item.title
         cell.levelLbl.text = "\(item.level)"
         cell.shortDescr.text = item.shortDesc
@@ -189,10 +197,24 @@ extension ItemsViewController : UITableViewDelegate {
         selectedItem = self.items[indexPath.row]
         return indexPath
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            
+           showSelectedItemDetail()
+        } else {
+            itemDetailView.levelMeter.level = (selectedItem?.level)!
+            itemDetailView.titleLabel.text = selectedItem?.title
+            itemDetailView.shortDescLabel.text = selectedItem?.shortDesc
+            itemDetailView.fullDescLabel.text = selectedItem?.longDesc
+        }
+    }
 }
 
 extension ItemsViewController : UICollectionViewDelegate{
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        selectedItem = self.items[indexPath.row]
+        showSelectedItemDetail()
     }
     
 }
@@ -211,9 +233,9 @@ extension ItemsViewController : UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GridCell
         
         cell.backgroundColor = .red
-        cell.levelLabel.text = "\(item.level)"
-        cell.shortDescLabel.text = item.shortDesc
-        cell.titleLabel.text = item.title
+        cell.levelLabel?.text = "\(item.level)"
+        cell.shortDescLabel?.text = item.shortDesc
+        cell.titleLabel?.text = item.title
         
         return cell
     }
@@ -226,7 +248,7 @@ extension ItemsViewController : UICollectionViewDelegateFlowLayout{
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         let paddingSpace = sectionHorizontalInset * (itemsPerRow + 1)
-        let availableWidth = view.frame.height - paddingSpace
+        let availableWidth = collectionView.frame.height - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
         return CGSize(width: widthPerItem, height: widthPerItem / 3.0)
