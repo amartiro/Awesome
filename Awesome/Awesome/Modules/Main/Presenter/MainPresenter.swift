@@ -27,15 +27,33 @@ class MainPresenter: NSObject {
 }
 
 extension MainPresenter: MainEventHandler {
+    func cancelEditItem() {
+        
+    }
+    
+    func editItemWithTitle(_ title: String, shortDesc: String, longDesc: String?, level: Int) {
+        let item = self.items[selectedItemIndex]
+        item.title = title
+        item.shortDesc = shortDesc
+        item.longDesc = longDesc
+        item.level = level
+        
+        mainInteractor?.saveItem(item)
+    }
+    
     func editItem() {
         
         let item = self.items[selectedItemIndex]
         userInterface.showEditView()
         userInterface.setEditItemTitle(item.title)
+        userInterface.setEditItemLevel(item.level)
+        userInterface.setEditItemShortDesc(item.shortDesc)
+        userInterface.setEditItemLongDesc(item.longDesc)
+        
     }
     
     func reloadItem() {
-        
+         mainInteractor?.findItemsWithType(itemType)
     }
     
     func viewLoaded() {

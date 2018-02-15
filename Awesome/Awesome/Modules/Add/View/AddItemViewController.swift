@@ -42,7 +42,7 @@ class AddItemViewController: UIViewController, AddItemViewInterface {
     
     func setItemLevel(_ level: Int) {
         itemLevel = level
-        addEditView.levelLabel.text = "/(level)"
+        addEditView.levelLabel.text = "\(level)"
     }
 }
 

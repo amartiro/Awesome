@@ -29,4 +29,8 @@ class MainDataManager {
         dataManager?.reset()
     }
     
+    func editItem(_ item: CommonItem) {
+        dataManager?.editItem(item: item)
+    }
+    
 }

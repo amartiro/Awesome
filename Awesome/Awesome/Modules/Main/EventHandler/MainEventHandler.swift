@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MainEventHandler : CollectionEventHandler, ItemDetailsEventHandler{
+protocol MainEventHandler : CollectionEventHandler, ItemDetailsEventHandler, EditItemEventHandler{
     
   
 

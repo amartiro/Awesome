@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.itemsTableView.register(UINib(nibName: "ItemTableCell", bundle: nil), forCellReuseIdentifier: "ItemTableCell")
+        editView.delegate = self
         eventHandler?.selectedItemType(.cardGames)
         // Do any additional setup after loading the view.
     }
@@ -149,9 +150,42 @@ extension MainViewController : MainViewInterface {
         let popover = UIPopoverController.init(contentViewController: actionSheetController)
         popover.present(from: chooseTypeBarButton, permittedArrowDirections: .any, animated: true)
     }
+}
+
+extension MainViewController: AddEditViewDelegate {
+    func increaseLevel() {
+        setEditItemLevel(min(itemLevel + 1, 10))
+        saveAction()
+    }
     
+    func decreaseLevel() {
+        setEditItemLevel(max(itemLevel - 1, 1))
+        saveAction()
+    }
     
+    func titleChanged(_ title: String) {
+        itemTitle = title
+        saveAction()
+    }
     
+    func shortDescrChanged(_ desc: String) {
+        shortDesc = desc
+        saveAction()
+    }
+    
+    func longDescrChanged(_ desc: String) {
+        longDesc = desc
+        saveAction()
+    }
+    
+    func saveAction() {
+        eventHandler?.editItemWithTitle(itemTitle, shortDesc: shortDesc, longDesc: longDesc, level: itemLevel)
+        eventHandler?.reloadItem()
+    }
+    
+    func saveButtonAction() {
+        self.saveAction()
+    }
 }
 
 extension MainViewController : UITableViewDataSource {
@@ -164,10 +198,6 @@ extension MainViewController : UITableViewDataSource {
         let item = items[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableCell") as! ItemTableCell
-        
-//        if cell == nil {
-//            cell = ItemTableCell(style: .default, reuseIdentifier: "ItemTableCell")
-//        }
 
         cell.titleLabel.text = item.title
         cell.levelLbl.text = "\(item.level)"

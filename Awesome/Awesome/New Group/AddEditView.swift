@@ -72,10 +72,12 @@ class AddEditView: UIView {
 }
 
 extension AddEditView : UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let text = textField.text!
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
         
+        let text = currentText.replacingCharacters(in: stringRange, with: string)
+       
         switch textField {
             
         case titleTextField:
@@ -85,13 +87,17 @@ extension AddEditView : UITextFieldDelegate {
         default:
             print(text)
         }
+        return true
     }
 }
 
 extension AddEditView : UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let text = (textView.text as NSString).replacingCharacters(in: range, with: text)
         if textView == longDescTextView {
-            delegate?.longDescrChanged(textView.text)
+            delegate?.longDescrChanged(text)
         }
+        return true
     }
 }

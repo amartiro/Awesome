@@ -15,6 +15,10 @@ class MainInteractor : NSObject  {
     init(dataManager: MainDataManager) {
         self.dataManager = dataManager
     }
+    
+    func saveItem(_ item: CommonItem) {
+        dataManager.editItem(item)
+    }
 }
 
 extension MainInteractor: MainInteractorInput{
