@@ -11,21 +11,26 @@ import UIKit
 
 class CollectionViewController : UIViewController, CollectionViewInterface {
 
+    fileprivate let itemsPerRow: CGFloat = 2
+    fileprivate let sectionHorizontalInset: CGFloat =  15.0
+
+
     var eventHandler : CollectionEventHandler?  // Presenter
     
     fileprivate var items : [DisplayItem] = []
  //   fileprivate var selectedItem : DisplayItem?
 
     @IBOutlet weak var itemsTableView: UITableView!
+    @IBOutlet weak var itemsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
          self.itemsTableView.register(UINib(nibName: "ItemTableCell", bundle: nil), forCellReuseIdentifier: "ItemTableCell")
         
-        self.itemsTableView.register(UINib(nibName: "GridTableCell", bundle: nil), forCellReuseIdentifier: "GridTableCell")
+        self.itemsCollectionView.register(UINib(nibName: "ItemGridCell", bundle: nil), forCellWithReuseIdentifier: "ItemGridCell")
         
-        self.itemsTableView.rowHeight = 100
+      //  self.itemsTableView.rowHeight = 100
         
       //  getItems()
     }
@@ -33,6 +38,7 @@ class CollectionViewController : UIViewController, CollectionViewInterface {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         eventHandler?.selectedItemType(.snakes)
+        updateViews()
     }
     @IBAction func resetButtonAction(_ sender: Any) {
         eventHandler?.resetItems()
@@ -43,7 +49,6 @@ class CollectionViewController : UIViewController, CollectionViewInterface {
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
-        
         eventHandler?.addNewItem()
     }
     
@@ -58,6 +63,7 @@ class CollectionViewController : UIViewController, CollectionViewInterface {
     func showItems(_ items: [DisplayItem]) {
         self.items = items
         self.itemsTableView.reloadData()
+        self.itemsCollectionView.reloadData()
     }
     
     func showItemTypeDialog() {
@@ -89,14 +95,28 @@ class CollectionViewController : UIViewController, CollectionViewInterface {
         }
     }
     
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
             print("Landscape")
         } else {
             print("Portrait")
         }
+        updateViews()
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         
-        self.itemsTableView.reloadData()
+    }
+    
+    func updateViews(){
+        let isGrid = UIDevice.current.orientation.isLandscape && (UIDevice.current.userInterfaceIdiom == .phone)
+        
+        itemsTableView.isHidden = isGrid
+        itemsCollectionView.isHidden = !isGrid
+        
+        itemsCollectionView.collectionViewLayout.invalidateLayout()
+        itemsCollectionView.reloadData()
     }
     
 }
@@ -110,16 +130,6 @@ extension CollectionViewController : UITableViewDataSource {
         
         let item = items[indexPath.row]
         
-//        if UIDevice.current.orientation.isLandscape  {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "GridTableCell") as! GridTableCell
-//
-////            cell.titleLabel.text = item.title
-////            cell.levelLbl.text = "\(item.level)"
-////            cell.shortDescr.text = item.shortDesc
-//
-//
-//            return cell
-//        } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableCell") as! ItemTableCell
         
         cell.titleLabel.text = item.title
@@ -128,29 +138,60 @@ extension CollectionViewController : UITableViewDataSource {
         
 
         return cell
- //       }
     }
 }
 
 extension CollectionViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if UIDevice.current.orientation.isLandscape  {
-//            return 80
-//        } else {
             return 60
-//        }
     }
     
-//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?{
-//        selectedItem = self.items[indexPath.row]
-//        return indexPath
-//    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         eventHandler?.selectItemWithIndex(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+}
 
+extension CollectionViewController : UICollectionViewDelegate{
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        eventHandler?.selectItemWithIndex(indexPath.row)
+    }
+}
+
+extension CollectionViewController : UICollectionViewDataSource{
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return items.count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let item = items[indexPath.row]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemGridCell", for: indexPath) as! ItemGridCell
+        
+        cell.levelLbl?.text = "\(item.level)"
+        cell.shortDescr?.text = item.shortDesc
+        cell.titleLabel?.text = item.title
+        
+        return cell
+    }
+}
+
+extension CollectionViewController : UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        let paddingSpace = sectionHorizontalInset * (itemsPerRow + 1)
+        let availableWidth = max(collectionView.frame.height, collectionView.frame.width) - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem / 4.0)
+    }
 }

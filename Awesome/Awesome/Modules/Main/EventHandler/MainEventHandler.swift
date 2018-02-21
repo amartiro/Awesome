@@ -9,7 +9,4 @@
 import Foundation
 
 protocol MainEventHandler : CollectionEventHandler, ItemDetailsEventHandler, EditItemEventHandler{
-    
-  
-
 }

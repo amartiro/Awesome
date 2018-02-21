@@ -19,4 +19,6 @@ protocol DataSourceManager {
     
     func reset()
     func save()
+    
+    func sync()
 }

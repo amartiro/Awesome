@@ -17,6 +17,7 @@
                 <outlet property="longDescTextView" destination="4bG-AK-z2e" id="JhU-qw-et3"/>
                 <outlet property="minusLevelButton" destination="hao-zB-IzO" id="LrV-8e-635"/>
                 <outlet property="plusLevelButton" destination="XFk-LD-b4e" id="zTL-Ns-lYH"/>
+                <outlet property="saveButton" destination="zsU-nB-fUj" id="fFo-JU-SwI"/>
                 <outlet property="scrollView" destination="vUs-lE-PmA" id="YMN-WS-8ep"/>
                 <outlet property="shortDescrTextField" destination="SKh-YF-w6Q" id="nu3-eS-PS4"/>
                 <outlet property="titleTextField" destination="MeG-dY-xrL" id="ehb-61-DWn"/>

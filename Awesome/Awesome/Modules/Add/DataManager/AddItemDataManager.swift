@@ -14,7 +14,6 @@ class AddItemDataManager: NSObject {
     
     init(dataManager: DataSourceManager){
         self.dataManager = dataManager
-        
     }
     
     func addNewItem(_ item: CommonItem) {

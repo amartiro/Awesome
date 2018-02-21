@@ -59,6 +59,7 @@ class AddNewItemViewController: UIViewController {
         item.longDesc = longDescTextView.text
         item.type = type
         item.level = level
+        item.status = ItemStatus.panding_add.rawValue
                 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.dataManager = appDelegate.diContainer.resolve(DataSourceManager.self)!

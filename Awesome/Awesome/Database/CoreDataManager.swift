@@ -10,48 +10,30 @@ import Foundation
 import CoreData
 
 class CoreDataManager : DatabaseManager {
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
+
+    fileprivate lazy var persistentContainer: NSPersistentContainer = {
+
         let container = NSPersistentContainer(name: "Awesome")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
     }()
     
-    lazy var context : NSManagedObjectContext = {
+    fileprivate lazy var context : NSManagedObjectContext = {
         return persistentContainer.viewContext
     }()
     
     // MARK: - Core Data Saving support
     
-    func save () {
+    internal func save () {
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
+                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
@@ -70,11 +52,9 @@ class CoreDataManager : DatabaseManager {
         }
     }
     
-    private func fetchEntries(_ predicate: NSPredicate, completionBlock: @escaping (([ManagedItem]) -> Void)) {
+    fileprivate func fetchEntries(_ predicate: NSPredicate, completionBlock: @escaping (([ManagedItem]) -> Void)) {
         let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
         fetchRequest.predicate = predicate
-        //        fetchRequest.sortDescriptors = sortDescriptors
-        
         
         context.perform
             {
@@ -86,12 +66,21 @@ class CoreDataManager : DatabaseManager {
     
 
     func getItems(itemType : ItemType, completion: @escaping (([CommonItem]) -> Void)) {
-        let predicate = NSPredicate(format: "(type == \"\(Helper.getItemName(itemType: itemType) )\")")
+        let predicate = NSPredicate(format: "type == %@ AND status != %d AND status != %d AND status != %d" , Helper.getItemName(itemType: itemType), ItemStatus.panding_delete.rawValue, ItemStatus.waiting_delete.rawValue, ItemStatus.panding_delete_after_add.rawValue)
+
         fetchEntries(predicate) { entries in
             let items = self.itemsFromDataStoreEntries(entries)
             completion(items)
         }
-
+    }
+    
+    func getItems(itemStatus : ItemStatus, completion: @escaping (([CommonItem]) -> Void)) {
+        let predicate = NSPredicate(format: "status != %d" , ItemStatus.panding_delete.rawValue)
+        
+        fetchEntries(predicate) { entries in
+            let items = self.itemsFromDataStoreEntries(entries)
+            completion(items)
+        }
     }
     
     func getItem(itemId : String, completion: @escaping ((CommonItem?) -> Void)) {
@@ -100,11 +89,10 @@ class CoreDataManager : DatabaseManager {
             let items = self.itemsFromDataStoreEntries(entries)
             completion(items.first)
         }
-        
     }
     
 
-    func itemsFromDataStoreEntries(_ entries: [ManagedItem]) -> [CommonItem] {
+    fileprivate func itemsFromDataStoreEntries(_ entries: [ManagedItem]) -> [CommonItem] {
 
         var todoItems : [CommonItem] = [CommonItem]()
         for entry in entries {
@@ -112,6 +100,52 @@ class CoreDataManager : DatabaseManager {
             todoItems.append(item)
         }
         return todoItems
+    }
+    
+    func updateAfterRequest(item : CommonItem) {
+        let predicate = NSPredicate(format: "id == %@", item.id)
+        
+        let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
+        fetchRequest.predicate = predicate
+        
+        context.perform
+            {
+                let queryResults = try? self.context.fetch(fetchRequest)
+                let managedResults = queryResults! as! [ManagedItem]
+                
+                if let managedItem = managedResults.first {
+                    switch managedItem.status {
+                        
+                    case ItemStatus.waiting_add.rawValue :
+                        managedItem.status = ItemStatus.untouched.rawValue
+                    case ItemStatus.panding_update.rawValue : break
+                        
+                    case ItemStatus.panding_delete.rawValue : break
+                        
+                    case ItemStatus.panding_update.rawValue : break
+                        
+                    default: break
+//                    if managedItem.status == ItemStatus.waiting_add.rawValue {
+//                        managedItem.imageUrl = item.imageUrl
+//                        managedItem.level = item.level
+//                        managedItem.shortDesc = item.shortDesc
+//                        managedItem.longDesc = item.longDesc
+//                        managedItem.title = item.title
+//                        managedItem.status = item.status // must be 'updated'
+//                    }
+                    }
+                    
+                } else {
+                    
+                }
+        }
+                do {
+                    try self.context.save()
+                    print("Success")
+                    //   people.append(person)
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
     }
     
     func addOrUpdateItem(item : CommonItem)  {
@@ -126,26 +160,29 @@ class CoreDataManager : DatabaseManager {
             let managedResults = queryResults! as! [ManagedItem]
            
             if let managedItem = managedResults.first {
-                
-                managedItem.imageUrl = item.imageUrl
-                managedItem.level = item.level
-                managedItem.shortDesc = item.shortDesc
-                managedItem.longDesc = item.longDesc
-                managedItem.title = item.title
-                
+                if managedItem.status == ItemStatus.untouched.rawValue {  // TODO discuss and deside what to do for other statuses
+                    managedItem.imageUrl = item.imageUrl
+                    managedItem.level = item.level
+                    managedItem.shortDesc = item.shortDesc
+                    managedItem.longDesc = item.longDesc
+                    managedItem.title = item.title
+                    managedItem.status = item.status
+                }
             } else {
-                let person =
+                let newItem =
                     NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.context) as! ManagedItem
                 
                 // 3
-                person.setValue(item.title, forKeyPath: "title")
-                person.setValue(item.imageUrl, forKeyPath: "imageUrl")
-                person.setValue(item.longDesc, forKeyPath: "longDesc")
-                person.setValue(item.shortDesc, forKeyPath: "shortDesc")
-                person.setValue(item.id, forKeyPath: "serverId")
-                person.setValue(item.id, forKeyPath: "id")
-                person.setValue(item.level, forKeyPath: "level")
-                person.setValue(item.type, forKeyPath: "type")
+                newItem.setValue(item.title, forKeyPath: "title")
+                newItem.setValue(item.imageUrl, forKeyPath: "imageUrl")
+                newItem.setValue(item.longDesc, forKeyPath: "longDesc")
+                newItem.setValue(item.shortDesc, forKeyPath: "shortDesc")
+                newItem.setValue(item.level, forKeyPath: "level")
+                newItem.setValue(item.type, forKeyPath: "type")
+                newItem.setValue(item.status, forKeyPath: "status") // must be 'untouched'
+
+                newItem.setValue(item.id, forKeyPath: "serverId")
+                newItem.setValue(item.id, forKeyPath: "id")
             }
             
             do {
@@ -161,29 +198,28 @@ class CoreDataManager : DatabaseManager {
     
     func addItem(item : CommonItem) {
      
-        let person = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.context) as! ManagedItem
+        let newItem = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.context) as! ManagedItem
 
-        // 3
-        person.setValue(item.title, forKeyPath: "title")
-        person.setValue(item.imageUrl, forKeyPath: "imageUrl")
-        person.setValue(item.longDesc, forKeyPath: "longDesc")
-        person.setValue(item.shortDesc, forKeyPath: "shortDesc")
-        person.setValue(item.id, forKeyPath: "serverId")
-        person.setValue(item.id, forKeyPath: "id")
-        person.setValue(item.level, forKeyPath: "level")
-        person.setValue(item.type, forKeyPath: "type")
+        newItem.setValue(item.title, forKeyPath: "title")
+        newItem.setValue(item.imageUrl, forKeyPath: "imageUrl")
+        newItem.setValue(item.longDesc, forKeyPath: "longDesc")
+        newItem.setValue(item.shortDesc, forKeyPath: "shortDesc")
+        newItem.setValue(item.level, forKeyPath: "level")
+        newItem.setValue(item.type, forKeyPath: "type")
+        newItem.setValue(item.status, forKeyPath: "status") // must be ItemStatus.panding_add.rawValue
         
+        newItem.setValue(item.id, forKeyPath: "serverId")
+        newItem.setValue(item.id, forKeyPath: "id")
+
         do {
             try self.context.save()
             print("Success")
-            //   people.append(person)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
     func editItem(item : CommonItem) {
-        
         let predicate = NSPredicate(format: "id == %@", item.id)
         
         let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
@@ -200,6 +236,16 @@ class CoreDataManager : DatabaseManager {
                 managedItem.shortDesc = item.shortDesc
                 managedItem.longDesc = item.longDesc
                 managedItem.title = item.title
+               
+                switch managedItem.status {
+                    case ItemStatus.waiting_add.rawValue:
+                        managedItem.status = ItemStatus.panding_update_after_add.rawValue
+                    case ItemStatus.waiting_update.rawValue,
+                         ItemStatus.untouched.rawValue:
+                        managedItem.status = ItemStatus.panding_update.rawValue
+                    default:
+                        print(managedItem.status)
+                }
             }
                 
             do {
@@ -222,8 +268,20 @@ class CoreDataManager : DatabaseManager {
             let queryResults = try? self.context.fetch(fetchRequest)
             let managedResults = queryResults! as! [ManagedItem]
             
-            for object in managedResults {
-                self.context.delete(object)
+            if let managedItem = managedResults.first {
+                switch managedItem.status {
+                case ItemStatus.waiting_add.rawValue,
+                     ItemStatus.panding_update_after_add.rawValue:
+                    managedItem.status = ItemStatus.panding_delete_after_add.rawValue
+                case ItemStatus.waiting_update.rawValue,
+                     ItemStatus.panding_update.rawValue,
+                     ItemStatus.untouched.rawValue:
+                    managedItem.status = ItemStatus.panding_delete.rawValue
+                case ItemStatus.panding_add.rawValue:
+                    self.context.delete(managedItem)
+                default:
+                    print(managedItem.status)
+                }
             }
             
             do {
@@ -235,6 +293,37 @@ class CoreDataManager : DatabaseManager {
         }
         
     }
-
     
+    func saveItem(item : CommonItem) {
+        
+        let predicate = NSPredicate(format: "id == %@", item.id)
+        
+        let fetchRequest: NSFetchRequest<NSManagedObject>  = NSFetchRequest(entityName: "Item")
+        fetchRequest.predicate = predicate
+        
+        context.perform {
+            let queryResults = try? self.context.fetch(fetchRequest)
+            let managedResults = queryResults! as! [ManagedItem]
+            
+            if let managedItem = managedResults.first {
+                
+                managedItem.imageUrl = item.imageUrl
+                managedItem.level = item.level
+                managedItem.shortDesc = item.shortDesc
+                managedItem.longDesc = item.longDesc
+                managedItem.title = item.title
+                managedItem.status = item.status
+            }
+            
+            do {
+                try self.context.save()
+                print("Success")
+                //   people.append(person)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
+  
 }

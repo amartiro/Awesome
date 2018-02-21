@@ -30,6 +30,7 @@ class AddEditView: UIView {
     @IBOutlet weak var minusLevelButton: UIButton!
     @IBOutlet weak var plusLevelButton: UIButton!
     
+    @IBOutlet weak var saveButton: UIButton!
     var delegate : AddEditViewDelegate?
     
     override init(frame: CGRect) {

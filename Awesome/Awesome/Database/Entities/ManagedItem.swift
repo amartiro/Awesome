@@ -19,4 +19,5 @@ class ManagedItem : NSManagedObject , CommonItemProtocol{
     @NSManaged var shortDesc : String
     @NSManaged var title : String
     @NSManaged var type : String
+    @NSManaged var status : Int
 }

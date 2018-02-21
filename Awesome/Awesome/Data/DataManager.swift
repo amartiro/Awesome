@@ -32,7 +32,6 @@ class DataManager : DataSourceManager {
                     let item = ItemFactory.parseItem(dict: dict)
                     items.append(item)
                 }
-//                self.itemsTableView.reloadData()
             }
 
             for item in items {
@@ -43,13 +42,10 @@ class DataManager : DataSourceManager {
     
     func reset() {
         databaseManager.reset()
-        
-       // let loaded = UserDefaults.standard.value(forKey: "Loaded")
-       // if loaded == nil {
-            loadData()
-            UserDefaults.standard.set(true, forKey: "Loaded")
-            UserDefaults.standard.synchronize()
-      //  }
+
+        loadData()
+        UserDefaults.standard.set(true, forKey: "Loaded")
+        UserDefaults.standard.synchronize()
     }
     
     func getItems(itemType : ItemType, completion: @escaping (([CommonItem]) -> Void)) {
@@ -70,15 +66,16 @@ class DataManager : DataSourceManager {
 //            print(error ?? "No Error", response!)
 //        }
 
-        self.databaseManager.addOrUpdateItem(item: item)
+        self.databaseManager.addItem(item: item)
     }
     
     func editItem(item : CommonItem) {
 //        networkManager.editItem(item: item) { (response, error) in
 //            print(error ?? "No Error", response!)
 //        }
-        
-        databaseManager.editItem(item: item)
+   //     DispatchQueue.global(qos: .background) .async {
+            self.databaseManager.editItem(item: item)
+ //       }
     }
     
     func deleteItem(item : CommonItem) {
@@ -92,6 +89,23 @@ class DataManager : DataSourceManager {
     
     func save(){
         databaseManager.save()
+    }
+    
+    func sync() {
+        
+        var syncableItems = [CommonItem]()
+        databaseManager.getItems(itemStatus: ItemStatus.panding_add) { (items) in
+            syncableItems.append(contentsOf: items)
+        }
+        
+        databaseManager.getItems(itemStatus: ItemStatus.panding_update) { (items) in
+            syncableItems.append(contentsOf: items)
+        }
+        
+        databaseManager.getItems(itemStatus: ItemStatus.panding_delete) { (items) in
+            syncableItems.append(contentsOf: items)
+        }
+        
         
     }
 

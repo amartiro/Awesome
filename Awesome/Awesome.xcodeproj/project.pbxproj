@@ -70,6 +70,8 @@
 		CE7F9EDB1FC313CC00C7B5B1 /* AwesomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EDA1FC313CC00C7B5B1 /* AwesomeUITests.swift */; };
 		CE7F9EE91FC3146E00C7B5B1 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */; };
 		CE7F9EED1FC4424C00C7B5B1 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */; };
+		CE95E8E1203D5241008A69B1 /* ItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95E8DF203D5240008A69B1 /* ItemGridCell.swift */; };
+		CE95E8E2203D5241008A69B1 /* ItemGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE95E8E0203D5240008A69B1 /* ItemGridCell.xib */; };
 		CE9694561FF3B4B300B63F25 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694551FF3B4B300B63F25 /* AlamofireNetworkManager.swift */; };
 		CE9694591FF3B4FF00B63F25 /* NetworkFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694581FF3B4FF00B63F25 /* NetworkFactory.swift */; };
 		CE96945F1FF3B75D00B63F25 /* DataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96945E1FF3B75D00B63F25 /* DataSourceManager.swift */; };
@@ -78,8 +80,6 @@
 		CE9694681FF3DB6C00B63F25 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694671FF3DB6C00B63F25 /* DatabaseManager.swift */; };
 		CE96946A1FF3DB8300B63F25 /* DatabaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9694691FF3DB8300B63F25 /* DatabaseFactory.swift */; };
 		CE96946C1FF3DB9B00B63F25 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96946B1FF3DB9B00B63F25 /* CoreDataManager.swift */; };
-		CEA2BB042034C14D001086E2 /* GridTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2BB022034C14D001086E2 /* GridTableCell.swift */; };
-		CEA2BB052034C14D001086E2 /* GridTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA2BB032034C14D001086E2 /* GridTableCell.xib */; };
 		CEA4618320330F29003DCE5B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4618220330F29003DCE5B /* MainViewController.swift */; };
 		CEA461862033134F003DCE5B /* MainWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA461852033134F003DCE5B /* MainWireframe.swift */; };
 		CEA4618920332892003DCE5B /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4618820332892003DCE5B /* MainPresenter.swift */; };
@@ -186,6 +186,8 @@
 		CE7F9EDC1FC313CC00C7B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7F9EE81FC3146E00C7B5B1 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		CE7F9EEC1FC4424C00C7B5B1 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		CE95E8DF203D5240008A69B1 /* ItemGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGridCell.swift; sourceTree = "<group>"; };
+		CE95E8E0203D5240008A69B1 /* ItemGridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemGridCell.xib; sourceTree = "<group>"; };
 		CE9694551FF3B4B300B63F25 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		CE9694581FF3B4FF00B63F25 /* NetworkFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFactory.swift; sourceTree = "<group>"; };
 		CE96945E1FF3B75D00B63F25 /* DataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceManager.swift; sourceTree = "<group>"; };
@@ -194,8 +196,6 @@
 		CE9694671FF3DB6C00B63F25 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		CE9694691FF3DB8300B63F25 /* DatabaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFactory.swift; sourceTree = "<group>"; };
 		CE96946B1FF3DB9B00B63F25 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		CEA2BB022034C14D001086E2 /* GridTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTableCell.swift; sourceTree = "<group>"; };
-		CEA2BB032034C14D001086E2 /* GridTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridTableCell.xib; sourceTree = "<group>"; };
 		CEA4618220330F29003DCE5B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CEA461852033134F003DCE5B /* MainWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWireframe.swift; sourceTree = "<group>"; };
 		CEA4618820332892003DCE5B /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -458,8 +458,8 @@
 				CEDDEF461FDE6F5B00627B27 /* GridCell.swift */,
 				CE21F1132034503500AF3BB3 /* ItemTableCell.swift */,
 				CE21F1142034503500AF3BB3 /* ItemTableCell.xib */,
-				CEA2BB022034C14D001086E2 /* GridTableCell.swift */,
-				CEA2BB032034C14D001086E2 /* GridTableCell.xib */,
+				CE95E8DF203D5240008A69B1 /* ItemGridCell.swift */,
+				CE95E8E0203D5240008A69B1 /* ItemGridCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -885,12 +885,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEA2BB052034C14D001086E2 /* GridTableCell.xib in Resources */,
 				CE781FF61FE3B25000EB1F8C /* ItemDetailView.xib in Resources */,
 				CE0748341FD58B2C002C8F63 /* LevelMeter.xib in Resources */,
 				CE7F9EC51FC313CC00C7B5B1 /* LaunchScreen.storyboard in Resources */,
 				CE21F1162034503500AF3BB3 /* ItemTableCell.xib in Resources */,
 				CE7F9EC21FC313CC00C7B5B1 /* Assets.xcassets in Resources */,
+				CE95E8E2203D5241008A69B1 /* ItemGridCell.xib in Resources */,
 				CEC9E62D201F4D4B00403786 /* AddEditView.xib in Resources */,
 				CE7F9EBD1FC313CC00C7B5B1 /* Main.storyboard in Resources */,
 			);
@@ -981,7 +981,6 @@
 			files = (
 				CEDDEF431FDA9AFF00627B27 /* NetworkManager.swift in Sources */,
 				CE3A02D82029A01D006C2B45 /* EditItemViewController.swift in Sources */,
-				CEA2BB042034C14D001086E2 /* GridTableCell.swift in Sources */,
 				CE3A03072029D734006C2B45 /* ItemDetailsPresenter.swift in Sources */,
 				CE3A02E02029A480006C2B45 /* EditItemPresenter.swift in Sources */,
 				CEC9E6502021FC2A00403786 /* CollectionViewController.swift in Sources */,
@@ -1025,6 +1024,7 @@
 				CE21F10E203332FE00AF3BB3 /* MainInteractorOutput.swift in Sources */,
 				CE3A02F72029ABE5006C2B45 /* ItemDetailsViewController.swift in Sources */,
 				CE3A02DA2029A043006C2B45 /* EditItemViewInterface.swift in Sources */,
+				CE95E8E1203D5241008A69B1 /* ItemGridCell.swift in Sources */,
 				CE9694561FF3B4B300B63F25 /* AlamofireNetworkManager.swift in Sources */,
 				CE3A03012029D1BD006C2B45 /* ItemDetailsEventHandler.swift in Sources */,
 				CE9694591FF3B4FF00B63F25 /* NetworkFactory.swift in Sources */,

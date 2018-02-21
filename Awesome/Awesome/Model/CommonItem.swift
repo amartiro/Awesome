@@ -8,6 +8,28 @@
 
 import Foundation
 
+enum ItemType : Int{
+    case snakes = 0
+    case cardGames
+    case todos
+}
+
+enum ItemStatus : Int{
+    case untouched = 0
+    case panding_update = 1
+    case panding_delete = 2
+    case panding_add = 3
+    case panding_update_after_add = 4
+    case panding_delete_after_add = 5
+    case waiting_update = 11
+    case waiting_delete = 12
+    case waiting_add = 13
+    
+    init(status : Int) {
+        self = ItemStatus(rawValue: status) ?? .untouched
+    }
+}
+
 protocol CommonItemProtocol {
     var date: Date? { set get }
 
@@ -19,6 +41,7 @@ protocol CommonItemProtocol {
     var shortDesc: String { set get }
     var title: String { set get }
     var type: String { set get }
+    var status: Int {set get}
 }
 
 class CommonItem: CommonItemProtocol {
@@ -31,6 +54,7 @@ class CommonItem: CommonItemProtocol {
     var shortDesc : String = ""
     var level : Int = 0
     var type: String = ""
+    var status : Int = 0
     
     convenience init(withProtocl item: CommonItemProtocol) {
         self.init()
@@ -44,6 +68,7 @@ class CommonItem: CommonItemProtocol {
         self.level = item.level
         self.title = item.title
         self.type = item.type
+        self.status = item.status
     }
     
     convenience init(withDict dict: [String: AnyObject]) {
@@ -56,6 +81,7 @@ class CommonItem: CommonItemProtocol {
         self.title = dict["title"] as! String
         self.level = dict["level"] as! Int
         self.type = dict["item_type"] as! String
+        self.status = ItemStatus.untouched.rawValue//dict["status"] as! Int
     }
     
 }

@@ -31,6 +31,7 @@ class MainViewController: UIViewController {
         self.itemsTableView.register(UINib(nibName: "ItemTableCell", bundle: nil), forCellReuseIdentifier: "ItemTableCell")
         editView.delegate = self
         eventHandler?.selectedItemType(.cardGames)
+        editView.saveButton.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -120,7 +121,11 @@ extension MainViewController : MainViewInterface {
     
     func showItems(_ items: [DisplayItem]) {
         self.items = items
-        self.itemsTableView.reloadData()
+        if items.count > 0 {
+            self.itemsTableView.reloadData()
+            self.itemsTableView.selectRow(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .top)
+            eventHandler?.selectItemWithIndex(0)
+        }       
     }
     
     func showItemTypeDialog() {
@@ -212,13 +217,9 @@ extension MainViewController : UITableViewDelegate {
         return 60;
     }
     
-    //    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?{
-    //        selectedItem = self.items[indexPath.row]
-    //        return indexPath
-    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         eventHandler?.selectItemWithIndex(indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
+      //  tableView.deselectRow(at: indexPath, animated: true)
     }
 }

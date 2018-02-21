@@ -9,12 +9,6 @@
 import UIKit
 import CoreData
 
-enum ItemType : Int{
-    case snakes = 0
-    case cardGames
-    case todos
-}
-
 private enum ItemsVCConstants {
     static let segueToItemDetailVCId = "showItemDetail"
     static let segueToNewItemVCId = "showNewItem"

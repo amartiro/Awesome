@@ -22,6 +22,7 @@ class AddItemInteractor: NSObject {
         item.longDesc = longDesc
         item.type = type
         item.level = level
+        item.status = ItemStatus.untouched.rawValue
 
         dataManager.addNewItem(item)
     }
