@@ -33,7 +33,10 @@ class MainViewController: UIViewController {
         eventHandler?.selectedItemType(.cardGames)
         editView.saveButton.isHidden = true
         // Do any additional setup after loading the view.
+        
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -123,8 +126,8 @@ extension MainViewController : MainViewInterface {
         self.items = items
         if items.count > 0 {
             self.itemsTableView.reloadData()
-            self.itemsTableView.selectRow(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .top)
-            eventHandler?.selectItemWithIndex(0)
+//            self.itemsTableView.selectRow(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .top)
+//            eventHandler?.selectItemWithIndex(0)
         }       
     }
     
